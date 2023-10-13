@@ -1,0 +1,63 @@
+.modal-display{
+    display: contents;
+}
+
+.modal-header{
+    color: white;
+    background-color: var(--color-primario);
+}
+.modal-backgroud{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: var(--bs-modal-zindex);
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    outline: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+.modal-body{
+    background-color: var(--color-terciario);
+}
+.dinero{
+    
+    color: white;
+    background-color: green;
+}
+.input-group{
+    width: 50%;
+}
+.col-auto{
+    background-color: var(--color-terciario);
+    display: flex;
+    justify-content: center;
+}
+.modal-footer{
+    background-color: black;
+}
+.modal-correcion-altura{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 30%;
+    top: 0;
+    width: 70%;
+    height: 100%;
+}
+.btn-success{
+    background-color: red;
+}
+.btn-success:hover{
+    background-color: var(--color-secundario);
+}
+.modal-content{
+    border: 2px solid black;
+    
+}
+.modal-amigos{
+    height: 50vh;
+
+}

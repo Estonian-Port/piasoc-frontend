@@ -1,0 +1,24 @@
+.amigo{
+    border: 2px solid var(--color-cuaternario);
+    border-radius: 5px;
+    padding: 0.5em;
+    width: 22vw;
+    margin-bottom: 0.5em;
+}
+.imagen-amigo{
+    width: 5vw;
+    height: 8vh;
+    border-radius: 80%;
+}
+.eliminar-amigo{
+    color: var(--color-primario);
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+}
+.amigo:hover{
+    border: 2px solid red;
+}
+.eliminar-amigo:hover{
+    color: var(--color-secundario);
+}

@@ -1,0 +1,47 @@
+<div *ngIf="modal">
+
+    <div  class="modal-backgroud"></div>
+
+    <div class="modal fade modal-display">
+        <div class="modal-dialog modal-correcion-altura" role="document">
+
+            <div  class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{titulo}}</h5>
+                </div>
+                <div *ngIf="modalCredito" class="modal-body">
+                    {{cuerpo}}
+                </div>
+                <div *ngIf="modalAmigos" class="modal-body scroll modal-amigos">
+                    <!--<app-card-agregar-amigo *ngFor="let amigo of listaUsuarios" [amigo]="amigo" [usuario]="usuario" [listaUsuarios] = "listaUsuarios" (outputCerrarModal)="changeModal()"></app-card-agregar-amigo>
+                        -->
+                </div>
+
+                <div  *ngIf="modalCredito" class="col-auto">
+                    <label class="sr-only" for="inlineFormInputGroup">Monto a ingresar</label>
+                    <div class="input-group mb-2 ">
+                        <div class="input-group-prepend ">
+                            <div class="input-group-text dinero">$</div>
+                        </div>
+                        <!--<form [formGroup]="formMonto" class="form-group">
+                            <input type="number" class="form-control" formControlName="monto" [(ngModel)]="monto"/>
+                        </form>-->
+
+                        <div *ngIf="!this.formMonto.valid" class="text-danger">
+                            El monto debe ser mayor a cero.   
+                        </div>            
+                                                           
+                             
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="changeModal()" [attr.data-testid]="'cerrar'">Cerrar</button>
+                    <button *ngIf="modalCredito" type="button" class="btn btn-success" (click)="aceptar()">{{boton}}</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
