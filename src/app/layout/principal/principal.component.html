@@ -1,137 +1,114 @@
 
-	<header>
-		<nav class="navbar navbar-expand-lg navbar navbar-light">
-			<a class="logo-header navbar-brand">
-				<img class="img-logo" src=".../../../../../assets/img/prueba3.png"/>
-			</a>
-
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"> </span>
-			</button>
-
-			<div class="collapse navbar-collapse justify-content-center offset" id="navbarSupportedContent">
-				<div class="nav navbar-nav">
-					<a th:href="@{/}" class="py-4 px-5 nav-item nav-link active">Home</a>		
-					<a th:href="@{/seguros}" class="py-4 px-5  nav-item nav-link active">Seguros</a>
-					<a href="#" class="py-4 px-5  nav-item nav-link active">Siniestros</a>
-					<a th:href="@{/seleccionarVehiculo}" class="py-4 px-5  nav-item nav-link active">Cotizacion</a>
-					<a href="#" class="py-4 px-5  nav-item nav-link active">Contacto</a>
-					<a href="https://api.whatsapp.com/send?phone=5491135559728" class="py-4 px-5  nav-item nav-link active"><i class="fab fa-whatsapp fa-2x"></i></a>
-				</div>
+<section id="slider" class="slider">
+	<div class="container">
+		<div class="slider-container" id="slider-container">
+			<div class="slider-section">
+				<img src="../../../assets/img/img-1.png" alt="" class="slider-img">
+				<!-- parrafo absoluto al div contenedor: slider-secion -->
 			</div>
-		</nav>
-	</header>
-
-	<section id="slider" class="slider">
-		<div class="container">
-			<div class="slider-container" id="slider-container">
-				<div class="slider-section">
-					<img src="../../../assets/img/img-1.png" alt="" class="slider-img">
-					<!-- parrafo absoluto al div contenedor: slider-secion -->
-				</div>
-				<div class="slider-section">
-					<img src="../../../assets/img/img-2.png" alt="" class="slider-img">
-				</div>
-				<div class="slider-section">
-					<img src="../../../assets/img/img-3.png" alt="" class="slider-img">
-				</div>
+			<div class="slider-section">
+				<img src="../../../assets/img/img-2.png" alt="" class="slider-img">
 			</div>
-
-			<div class="container-slider-logo">
-				<img src="../../../assets/img/logo_blanco-2.png" alt="" class="slider-logo">
+			<div class="slider-section">
+				<img src="../../../assets/img/img-3.png" alt="" class="slider-img">
 			</div>
 		</div>
-	</section>
 
-	<section id="boton-cotizar">
-		<div class="container">
-			<div class="form-inline py-4">
-				<div class="form-group text-center">
-					<label for="cotizar">Cotiza tu vehiculo ahora</label>
-					<a th:href="@{/seleccionarVehiculo}" class="btn-cotizar mx-5">Cotizar</a>
-				</div>
+		<div class="container-slider-logo">
+			<img src="../../../assets/img/logo_blanco-2.png" alt="" class="slider-logo">
+		</div>
+	</div>
+</section>
+
+<section id="boton-cotizar">
+	<div class="container">
+		<div class="form-inline py-4">
+			<div class="form-group text-center">
+				<label for="cotizar">Cotiza tu vehiculo ahora</label>
+				<a href="/cotizacion" class="btn-cotizar mx-5">Cotizar</a>
 			</div>
 		</div>
-	</section>
+	</div>
+</section>
 
-	<div class="border-top my-3"></div>
+<div class="border-top my-3"></div>
 
-	<section id="quienes-somos" class="quienes-somos">
-		<div class="container  text-center">
-			<h1 class="p-5">Quiénes somos</h1>
+<section id="quienes-somos" class="quienes-somos">
+	<div class="container  text-center">
+		<h1 class="p-5">Quiénes somos</h1>
 
-			<div class="row">
-				<div class="col-6 img-quienes-somos">
-					<img src="../../../assets/img/prueba.png" alt="">
-				</div>
-
-				<div class="col-9 descripcion-quienes-somos">
-					<p>Somos una empresa de productores de seguros que se inició de forma independiente en el año 1980.
-						Desde entonces, nos enfocamos en ofrecer el mejor servicio a nuestros clientes.
-					</p>
-				</div>
+		<div class="row">
+			<div class="col-6 img-quienes-somos">
+				<img src="./assets/img/prueba.png" alt="">
 			</div>
 
-			<div class="contenedor-btn-seguros p-4">
-				<a th:href="@{/seguros}" class="btn-seguros">Seguros</a>
+			<div class="col-9 descripcion-quienes-somos">
+				<p>Somos una empresa de productores de seguros que se inició de forma independiente en el año 1980.
+					Desde entonces, nos enfocamos en ofrecer el mejor servicio a nuestros clientes.
+				</p>
 			</div>
 		</div>
-	</section>
 
-	<section id="seguros" class="seguros"></section>
+		<div class="contenedor-btn-seguros p-4">
+			<a href="/seguros" class="btn-seguros">Seguros</a>
+		</div>
+	</div>
+</section>
 
-	<section id="companias" class="companias">
-		<div class="container">
-			<h2>Compañías</h2>
-			<div class="companias-container">
-				<div class="companias-item">
-          <img src="../../../assets/img/logos-companias/allianz-logo.png" alt="">
-				</div>
-				<div class="companias-item">
-					<img src="../../../assets/img/logos-companias/berkley-logo.png" alt="">
-				</div>
-				<div class="companias-item">
-					<img src="../../../assets/img/logos-companias/experta-art-logo.png" alt="">
-				</div>
-				<div class="companias-item">
-					<img src="../../../assets/img/logos-companias/fianzas-y-creditos-logo.png" alt="">
-				</div>
-				<div class="companias-item">
-					<img src="../../../assets/img/logos-companias/galeno-art-logo.png" alt="">
-				</div>
-				<div class="companias-item">
-					<img src="../../../assets/img/logos-companias/integrity-logo.png" alt="">
-				</div>
-				<div class="companias-item">
-					<img src="../../../assets/img/logos-companias/prevencion-logo.png" alt="">
-				</div>
-				<div class="companias-item">
-					<img src="../../../assets/img/logos-companias/provincia-art-logo.png" alt="">
-				</div>
-				<div class="companias-item">
-					<img src="../../../assets/img/logos-companias/pseguros-logo.png" alt="">
-				</div>
-				<div class="companias-item">
-					<img src="../../../assets/img/logos-companias/sancor-seguros-logo.png" alt="">
-				</div>
-				<div class="companias-item">
-					<img src="../../../assets/img/logos-companias/seguros-rivadavia-logo.png" alt="">
-				</div>
-				<div class="companias-item">
-					<img src="../../../assets/img/logos-companias/tpc-seguros-logo.png" alt="">
-				</div>
-				<div class="companias-item">
-					<img src="../../../assets/img/logos-companias/hdi-logo.png" alt="">
-				</div>
-				<div class="companias-item">
-					<img src="../../../assets/img/logos-companias/atm-logo.png" alt="">
-				</div>
-				<div class="companias-item">
-					<img src="../../../assets/img/logos-companias/smg-seguros-logo.png" alt="">
-				</div>
-				<div class="companias-item">
-					<img src="../../../assets/img/logos-companias/zurich-logo.png" alt="">
-				</div>
+<section id="seguros" class="seguros"></section>
+
+<section id="companias" class="companias">
+	<div class="container">
+		<h2>Compañías</h2>
+		<div class="companias-container">
+			<div class="companias-item">
+		<img src="../../../assets/img/logos-companias/allianz-logo.png" alt="">
+			</div>
+			<div class="companias-item">
+				<img src="../../../assets/img/logos-companias/berkley-logo.png" alt="">
+			</div>
+			<div class="companias-item">
+				<img src="../../../assets/img/logos-companias/experta-art-logo.png" alt="">
+			</div>
+			<div class="companias-item">
+				<img src="../../../assets/img/logos-companias/fianzas-y-creditos-logo.png" alt="">
+			</div>
+			<div class="companias-item">
+				<img src="../../../assets/img/logos-companias/galeno-art-logo.png" alt="">
+			</div>
+			<div class="companias-item">
+				<img src="../../../assets/img/logos-companias/integrity-logo.png" alt="">
+			</div>
+			<div class="companias-item">
+				<img src="../../../assets/img/logos-companias/prevencion-logo.png" alt="">
+			</div>
+			<div class="companias-item">
+				<img src="../../../assets/img/logos-companias/provincia-art-logo.png" alt="">
+			</div>
+			<div class="companias-item">
+				<img src="../../../assets/img/logos-companias/pseguros-logo.png" alt="">
+			</div>
+			<div class="companias-item">
+				<img src="../../../assets/img/logos-companias/sancor-seguros-logo.png" alt="">
+			</div>
+			<div class="companias-item">
+				<img src="../../../assets/img/logos-companias/seguros-rivadavia-logo.png" alt="">
+			</div>
+			<div class="companias-item">
+				<img src="../../../assets/img/logos-companias/tpc-seguros-logo.png" alt="">
+			</div>
+			<div class="companias-item">
+				<img src="../../../assets/img/logos-companias/hdi-logo.png" alt="">
+			</div>
+			<div class="companias-item">
+				<img src="../../../assets/img/logos-companias/atm-logo.png" alt="">
+			</div>
+			<div class="companias-item">
+				<img src="../../../assets/img/logos-companias/smg-seguros-logo.png" alt="">
+			</div>
+			<div class="companias-item">
+				<img src="../../../assets/img/logos-companias/zurich-logo.png" alt="">
 			</div>
 		</div>
-	</section>
+	</div>
+</section>

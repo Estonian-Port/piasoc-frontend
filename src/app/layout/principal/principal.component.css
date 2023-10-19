@@ -1,23 +1,5 @@
-
-
-body.paletaDeColores{
-    --colorPrincipal: #034471;
-    --colorSecundario: #5ba6d4;
-    --colorTerciario: #73CBF3;
-    --colorTexto: #444443;
-}
-
-ul{
-    list-style: none; 
-    padding: 0;
-}
-
 .logo-header{
     width: 25%;
-}
-
-.img-logo{
-    width: 100%;
 }
 
 .menu-container{
@@ -82,6 +64,7 @@ ul{
     margin-left: 5px;
     margin-top: 2px;
 }
+
 a{
     text-decoration: none;
     color: var(--colorTexto);
