@@ -1,191 +1,227 @@
 <div class="wrapper">
-    <div class="image-holder">
-        <img src="../imgs/form-wizard.png" alt="">
-    </div>
-    <form th:action="@{/saveCotizacion}" method="post" th:object="${cotizacion}" id="signup-form" class="signup-form">
-        <div id="wizard">
 
-            <!-- SECTION 1 -->
-            <h4></h4>
-            <section>
-                <div class="">
-                    <div>
-                        <h2>¿Es de uso particular?</h2>
-                         <div class="form-row form-group">
-                            <div class="radio">
-                              <label>
-                                <input type="radio" th:field="*{datosVehiculo.particular}" th:value="1" id="particular.1">
-                                Si</label>
-                            </div>
-                            <div class="radio">
-                              <label>
-                                <input type="radio" th:field="*{datosVehiculo.particular}" th:value="0" id="particular.0">
-                                No</label>
-                            </div>
+    <form id="signup-form" class="signup-form">
+
+        <!-- SECTION 1 -->
+        <section>
+            <div class="container">
+                <h2>Seleccionar Vehiculo</h2>
+        
+                <div class="row">
+                    <div class="col-md-3 col-sm-12 mb-4">
+                        <select class="form-select" id="tipoVehiculo">
+                            <option selected hidden value="0">Tipo de vehiculo</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-3 col-sm-12 mb-4">
+                        <select class="form-select" id="marca">
+                            <option selected hidden value="0">Marca</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12 mb-4">
+                        <select class="form-select" id="modelo">
+                            <option selected hidden value="0">Modelo</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12">
+                        <select class="form-select" id="ano">
+                            <option selected hidden>Año</option>
+                        </select>
+                    </div>
+                </div>
+            <!-- checkbox "No encuentro mi vehiculo" y que cambie los select 
+            por inputs -->
+            </div>
+        </section>
+
+
+        <!-- SECTION 2 -->
+        <section>
+            <div class="container">
+
+                <h2>Datos del vehiculo</h2> 
+
+                <h4>¿Es de uso particular?</h4>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioUsoParticular">
+                    <label class="form-check-label">Si</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioUsoParticular">
+                    <label class="form-check-label">No</label>
+                </div>
+
+
+                <h4>¿Tiene alarma?</h4>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioTieneAlarma">
+                    <label class="form-check-label">Si</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioTieneAlarma">
+                    <label class="form-check-label">No</label>
+                </div>
+
+                <h4>¿Se guarda en garage?</h4>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioSeGuardaEnGarage">
+                    <label class="form-check-label">Si</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioSeGuardaEnGarage">
+                    <label class="form-check-label">No</label>
+                </div>
+
+                <h4>¿Cuántos KMS manejás al año?</h4> 
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioSeGuardaEnGarage">
+                    <label class="form-check-label">Intervalo de KMS</label>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- SECTION 3 -->
+        <section>
+
+            <div class="container">
+
+                <h2>Datos del Seguro</h2> 
+
+                <h4>Tipo de Seguro</h4> 
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioSeGuardaEnGarage">
+                    <label class="form-check-label">Tipo de Seguro</label>
+                </div>
+
+ 
+
+                <h4>Edad</h4> 
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioSeGuardaEnGarage">
+                    <label class="form-check-label">Intervalo de edad</label>
+                </div>
+
+            
+                <h4>Además de usted, ¿maneja el auto un menor de 25 años?</h4>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioSeGuardaEnGarage">
+                    <label class="form-check-label">Si</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioSeGuardaEnGarage">
+                    <label class="form-check-label">No</label>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- SECTION 4 -->
+        <section>
+            <div class="container">
+
+                <h2>Datos de contacto</h2> 
+
+                <div class="row">
+                    <div class="col">
+                        <label>Nombre</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col">
+                        <label>Apellido</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div>
+                            <label>Sexo</label>
                         </div>
-                      </div>
-                      <div>
-                        <h2>¿Tiene alarma?</h2>
-                        <div class="form-row form-group">
-                            <div class="radio">
-                              <label>
-                                <input type="radio" th:field="*{datosVehiculo.alarma}" th:value="1" id="alarma.1">
-                                Si</label>
-                            </div>
-                            <div class="radio">
-                              <label>
-                                <input type="radio" th:field="*{datosVehiculo.alarma}" th:value="0" id="alarma.0">
-                                No</label>
-                            </div>
-                        </div>    
-                      </div>
-                    <div>
-                        <h2>¿Se guarda en garage?</h2>
-                           <div class="form-row form-group">
-                            <div class="radio">
-                              <label>
-                                <input type="radio" th:field="*{datosVehiculo.garage}" th:value="1" id="garage.1">
-                                Si</label>
-                            </div>
-                            <div class="radio">
-                              <label>
-                                <input type="radio" th:field="*{datosVehiculo.garage}" th:value="0" id="garage.0">
-                                No</label>
-                            </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="radioSeGuardaEnGarage">
+                            <label class="form-check-label">Tipos</label>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <!-- SECTION 2 -->
-            <h4></h4>
-            <section>
-                <div class="radio-block">
-                    <h2>¿Cuántos KMS manejás al año?</h2>
-                    <div class="radio">
-                          <ul>
-                            <li th:each="intervaloKilometros : ${listaIntervaloKilometros}">
-                                <input type="radio" th:field="*{datosVehiculo.intervaloKilometros}" th:value="${intervaloKilometros.id}" />
-                                <label th:for="${intervaloKilometros.intervalo}" th:text="${intervaloKilometros.intervalo}"></label>
-                            </li>
-                        </ul>
-                    </div>						        
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <label>CUIT/CUIL</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col">
+                        <label>Fecha de Nacimiento</label>
+                        <input type="date" class="form-control">
+                    </div>
                 </div>
-            </section>
+            </div>
 
-            <!-- SECTION 3 -->
-            <h4></h4>
-            <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <label>Nombre de la empresa (Opcional)</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <label>Ciudad</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col">
+                        <label>Provincia</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col">
+                        <label>Codigo Postal</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <label>E-mail</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col">
+                        <label>Celular</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>  
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <label>Comentarios</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container mt-3">
+            <div class="gap-2 d-flex justify-content-end">
                 <div>
-                    <div class="radio-block">
-                        <h2>Edad</h2>
-                        <div class="radio">
-                            <ul>
-                                <li th:each="intervaloEdad : ${listaIntervaloEdad}">
-                                    <input type="radio" th:field="*{datosVehiculo.intervaloEdad}" th:value="${intervaloEdad.id}" />
-                                    <label th:for="${intervaloEdad.intervalo}" th:text="${intervaloEdad.intervalo}"></label>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div>
-                        <h2>Además de usted, ¿maneja el auto un menor de 25 años?</h2>
-                        <div class="form-row form-group">
-                            <div class="radio">
-                              <label>
-                                <input type="radio" th:field="*{datosVehiculo.hijos}" th:value="1" id="hijos.1">
-                                Si</label>
-                            </div>
-                            <div class="radio">
-                              <label>
-                                <input type="radio" th:field="*{datosVehiculo.hijos}" th:value="0" id="hijos.0">
-                                No</label>
-                            </div>
-                        </div>
-                    </div>
+                    <a href="/" class="btn btn-primary">Volver</a>
                 </div>
-            </section>
-
-            <!-- SECTION 4 -->
-            <h4></h4>
-            <section>
-                <div class="form-row form-group">
-                    <div class="form-holder">
-                        <label for="">
-                            Nombre
-                        </label>
-                        <input type="text" class="form-control" id="nombre" th:field="*{cliente.nombre}" name="nombre">
-                    </div>
-                    <div class="form-holder">
-                        <label for="">
-                            Apellido
-                        </label>
-                        <input type="text" class="form-control" id="apellido" th:field="*{cliente.apellido}" name="apellido">
-                    </div>
+                <div>
+                    <button type="submit" class="btn btn-success">Cotizar</button>
                 </div>
-                <label for="">
-                    Sexo
-                </label>
-                 <div class="form-group" style="margin-bottom: 24px;">
-                    <li class="radio" style="display: inline;" th:each="sexo : ${listaSexo}">
-                        <input type="radio" th:field="*{cliente.sexo}" th:value="${sexo.id}" />
-                        <label th:for="${sexo.nombre}" th:text="${sexo.nombre}"></label>
-                    </li>
-                </div>
-                <div class="form-row">
-                    <label for="">
-                        CUIT/CUIL
-                    </label>
-                    <input type="text" class="form-control" id="cuil" th:field="*{cliente.cuil}" name="cuil">	
-                </div>
-                <div class="form-row">
-                    <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label> 
-                    <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento">
-                </div>
-                <div class="form-row">
-                    <label for="">
-                        Nombre de la empresa (Opcional)
-                    </label>
-                    <input type="text" class="form-control" id="empresa" th:field="*{cliente.empresa}" name="empresa">	
-                </div>	
-                <div class="form-row">
-                    <label for="">
-                        Ciudad
-                    <input type="text" class="form-control" id="ciudad" th:field="*{cliente.ciudad}" name="ciudad">	
-                    </label>
-                </div>
-                <div class="form-row">
-                    <label for="">
-                        Provincia
-                    </label>
-                    <input type="text" class="form-control" id="provincia" th:field="*{cliente.provincia}" name="provincia">
-                </div>	
-                <div class="form-row">
-                    <label for="">
-                        Código Postal
-                    </label>
-                    <input type="text" class="form-control" id="codigoPostal" th:field="*{cliente.codigoPostal}" name="codigoPostal">
-                </div>
-               <div class="form-row">
-                    <label for="">
-                        E-mail
-                    </label>
-                    <input type="text" class="form-control" id="email" th:field="*{cliente.email}" name="email">
-                </div>
-                <div class="form-row">
-                    <label for="">
-                        Celular
-                    </label>
-                    <input type="number" class="form-control" id="celular" th:field="*{cliente.celular}" name="celular">
-                </div>
-                <div class="form-row">
-                    <label for="">
-                        Comentarios
-                    </label>
-                    <input type="text" class="form-control" id="comentarios" th:field="*{cliente.comentarios}" name="comentarios">
-                </div>
-            </section>
+            </div>
         </div>
-        <button type="submit" style="display:none;"></button>
     </form>
 </div>

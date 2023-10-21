@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Alojamiento } from 'src/app/model/Alojamiento';
+import { ReservaService } from 'src/app/services/reserva.service';
 
 @Component({
   selector: 'app-cotizacion',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CotizacionComponent implements OnInit {
 
-  constructor() { }
+  constructor(public reservaService : ReservaService) { }
 
   ngOnInit(): void {
+    listaModelos = reservaService.getAllModelo()
   }
 
 }
