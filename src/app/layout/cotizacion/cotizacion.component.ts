@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Alojamiento } from 'src/app/model/Alojamiento';
-import { ReservaService } from 'src/app/services/reserva.service';
+import { Modelo } from 'src/app/model/Modelo';
+import { ModeloService } from 'src/app/services/modelo.service';
+import { TipoVehiculoService } from 'src/app/services/tipo-vehiculo.service';
 
 @Component({
   selector: 'app-cotizacion',
@@ -9,10 +10,18 @@ import { ReservaService } from 'src/app/services/reserva.service';
 })
 export class CotizacionComponent implements OnInit {
 
-  constructor(public reservaService : ReservaService) { }
+  listaTipoVehiculo: String[] = []
+  listaModelo: Modelo[] = []
 
-  ngOnInit(): void {
-    listaModelos = reservaService.getAllModelo()
+  constructor(public tipoVehiculoService : TipoVehiculoService, public modeloService : ModeloService, ) { }
+
+  async ngOnInit(): Promise<void> {
+
+    this.listaTipoVehiculo = await this.tipoVehiculoService.getAllTipoVehiculo()
+    console.log(this.listaTipoVehiculo)
+
+    this.listaModelo = await this.modeloService.getAllModelo()
+    console.log(this.listaModelo)
   }
 
 }
