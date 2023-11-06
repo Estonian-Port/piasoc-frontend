@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Marca } from 'src/app/model/Marca';
 import { Modelo } from 'src/app/model/Modelo';
 import { ModeloService } from 'src/app/services/modelo.service';
+import { MarcaService } from 'src/app/services/marca.service';
 import { TipoVehiculoService } from 'src/app/services/tipo-vehiculo.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class CotizacionComponent implements OnInit {
   listaModelo: Modelo[] = []
   modeloSeleccionado: String = ""
 
-  constructor(public tipoVehiculoService : TipoVehiculoService, public modeloService : ModeloService, ) { }
+  constructor(public tipoVehiculoService : TipoVehiculoService, public marcaService : MarcaService, public modeloService : ModeloService, ) { }
 
   async ngOnInit(): Promise<void> {
     
@@ -42,7 +43,7 @@ export class CotizacionComponent implements OnInit {
     this.cleanMarca()
     this.cleanModelo()
 
-    this.listaMarca = await this.modeloService.getListaMarcaByTipoVehiculo(this.tipoVehiculoSeleccionado)
+    this.listaMarca = await this.marcaService.getAllByTipoVehiculo(this.tipoVehiculoSeleccionado)
   }
 
   async getAllByMarcaAndTipoVehiculo(){
