@@ -9,21 +9,24 @@
         
                 <div class="row">
                     <div class="col-md-3 col-sm-12 mb-4">
-                        <select class="form-select" id="tipoVehiculo">
-                            <option selected hidden value="0">Tipo de vehiculo</option>
+                        <select class="form-select" name="tipoVehiculoSeleccionado" [(ngModel)]="tipoVehiculoSeleccionado" (change)="getListaMarcaByTipoVehiculo()">
+                            <option selected hidden value="Tipo Vehiculo">Tipo de vehiculo</option>
                             <option *ngFor="let tipoVehiculo of listaTipoVehiculo" [value]="tipoVehiculo">{{tipoVehiculo}}</option>
                         </select>
                     </div>
                     
                     <div class="col-md-3 col-sm-12 mb-4">
-                        <select class="form-select" id="marca">
-                            <option selected hidden value="0">Marca</option>
+                        <select class="form-select" name="marcaIdSeleccionada" [(ngModel)]="marcaIdSeleccionada" (change)="getAllByMarcaAndTipoVehiculo()">
+                            <option selected hidden value="Marca">Marca</option>
+                            <option *ngFor="let marca of listaMarca" [value]="marca.nombre">{{marca.nombre}}</option>
                         </select>
                     </div>
 
                     <div class="col-md-3 col-sm-12 mb-4">
-                        <select class="form-select" id="modelo">
-                            <option selected hidden value="0">Modelo</option>
+                        <select class="form-select" name="modeloSeleccionado" [(ngModel)]="modeloSeleccionado">
+                            <option selected hidden value="Modelo">Modelo</option>
+                            <option *ngFor="let modelo of listaModelo" [value]="modelo">{{modelo.nombre}}</option>
+
                         </select>
                     </div>
 
