@@ -9,6 +9,7 @@ import { SegurosComponent } from './layout/seguros/seguros.component';
 import { NavbarComponent } from './components/navbar/navbar.component'
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { StepBoxComponent } from './components/step-box/step-box.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FormsModule } from '@angular/forms';
     CotizacionComponent,
     SegurosComponent,
     NavbarComponent,
+    StepBoxComponent
   ],
   imports: [
     BrowserModule,
