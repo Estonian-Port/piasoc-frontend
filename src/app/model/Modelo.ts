@@ -4,7 +4,7 @@ export type ModeloJSON = {
   id: number,
   nombre: string,
   marca: Marca,
-  tipoVehiculo: String 
+  tipoVehiculo: string 
 }
 
 
@@ -14,7 +14,7 @@ export class Modelo {
     public id: number,
     public nombre: string,
     public marca: Marca,
-    public tipoVehiculo : String) {}
+    public tipoVehiculo : string) {}
 
   static fromJson(ModeloJSON: ModeloJSON): Modelo {
     return new Modelo(

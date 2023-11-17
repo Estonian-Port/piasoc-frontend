@@ -1,26 +1,31 @@
-import { Modelo } from "./Modelo"
+import { Cliente } from "./Cliente"
+import { DatosVehiculo } from "./DatosVehiculo"
 
 export type CotizacionJSON = {
   id: number,
-  modelo : Modelo
+  datosVehiculo : DatosVehiculo,
+  cliente : Cliente
 }
 
 export class Cotizacion {
   
   constructor(
     public id: number,
-    public modelo: Modelo,) {}
+    public datosVehiculo : DatosVehiculo,
+    public cliente : Cliente) {}
 
   static fromJson(CotizacionJSON: CotizacionJSON): Cotizacion {
     return new Cotizacion(
       CotizacionJSON.id,
-      CotizacionJSON.modelo)
+      CotizacionJSON.datosVehiculo,
+      CotizacionJSON.cliente)
   }
 
   toJSON(): CotizacionJSON {
     return {
       id: this.id,
-      modelo: this.modelo
+      datosVehiculo: this.datosVehiculo,
+      cliente : this.cliente
     }
   }
 

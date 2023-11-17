@@ -27,7 +27,7 @@
                         </div>
                         
                         <div class="col-md-3 col-sm-12 mb-4">
-                            <select class="form-select" name="marcaIdSeleccionada" [(ngModel)]="marcaIdSeleccionada" (change)="getAllByMarcaAndTipoVehiculo()">
+                            <select class="form-select" name="marcaSeleccionada" [(ngModel)]="marcaSeleccionada" (change)="getAllByMarcaAndTipoVehiculo()">
                                 <option selected hidden value="Marca">Marca</option>
                                 <option *ngFor="let marca of listaMarca" [value]="marca.nombre">{{marca.nombre}}</option>
                             </select>
@@ -63,39 +63,40 @@
 
                     <h4>¿Es de uso particular?</h4>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="radioUsoParticular">
+                        <input class="form-check-input" type="radio" [value]="true" name="particular" [(ngModel)]="datosVehiculo.particular">
                         <label class="form-check-label">Si</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="radioUsoParticular">
+                        <input class="form-check-input" type="radio" [value]="false" name="particular" [(ngModel)]="datosVehiculo.particular">
                         <label class="form-check-label">No</label>
                     </div>
 
 
                     <h4>¿Tiene alarma?</h4>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="radioTieneAlarma">
+                        <input class="form-check-input" type="radio" [value]="true" name="alarma" [(ngModel)]="datosVehiculo.alarma">
                         <label class="form-check-label">Si</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="radioTieneAlarma">
+                        <input class="form-check-input" type="radio" [value]="false" name="alarma" [(ngModel)]="datosVehiculo.alarma">
                         <label class="form-check-label">No</label>
                     </div>
 
                     <h4>¿Se guarda en garage?</h4>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="radioSeGuardaEnGarage">
+                        <input class="form-check-input" type="radio" [value]="true" name="garage" [(ngModel)]="datosVehiculo.garaje">
                         <label class="form-check-label">Si</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="radioSeGuardaEnGarage">
+                        <input class="form-check-input" type="radio" [value]="false" name="garage" [(ngModel)]="datosVehiculo.garaje">
                         <label class="form-check-label">No</label>
                     </div>
 
-                    <h4>¿Cuántos KMS manejás al año?</h4> 
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="radioSeGuardaEnGarage">
-                        <label class="form-check-label">Intervalo de KMS</label>
+                    <div class="col-4">
+                        <h4>¿Cuántos KMS manejás al año?</h4> 
+                        <select class="form-select" name="interavaloKilometros" [(ngModel)]="datosVehiculo.interavaloKilometros">
+                            <option *ngFor="let kms of listaIntervaloKilometros" [value]="kms">{{kms | stringSinUnderscore}}</option>
+                        </select>
                     </div>
                 </div>
 
@@ -110,25 +111,28 @@
 
                     <h2>Datos del Seguro</h2> 
 
-                    <h4>Tipo de Seguro</h4> 
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="radioSeGuardaEnGarage">
-                        <label class="form-check-label">Tipo de Seguro</label>
+                    <div class="col-4">
+                        <h4>Tipo de Seguro</h4> 
+                        <select class="form-select" name="tipoSeguro" [(ngModel)]="datosVehiculo.tipoSeguro">
+                            <option *ngFor="let seguro of listaTipoSeguro" [value]="seguro">{{seguro | stringSinUnderscore}}</option>
+                        </select>
                     </div>
 
-                    <h4>Edad</h4> 
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="radioSeGuardaEnGarage">
-                        <label class="form-check-label">Intervalo de edad</label>
+                    <div class="col-4">
+
+                        <h4>Edad</h4> 
+                        <select class="form-select" name="intervaloEdad" [(ngModel)]="datosVehiculo.intervaloEdad">
+                            <option *ngFor="let edad of listaIntervaloEdad" [value]="edad">{{edad | stringSinUnderscore}}</option>
+                        </select>
                     </div>
-                
+                    
                     <h4>Además de usted, ¿maneja el auto un menor de 25 años?</h4>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="radioSeGuardaEnGarage">
+                        <input class="form-check-input" type="radio" [value]="true" name="hijos" [(ngModel)]="datosVehiculo.hijos">
                         <label class="form-check-label">Si</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="radioSeGuardaEnGarage">
+                        <input class="form-check-input" type="radio" [value]="false" name="hijos" [(ngModel)]="datosVehiculo.hijos">
                         <label class="form-check-label">No</label>
                     </div>
                 </div>
@@ -145,11 +149,11 @@
                     <div class="row">
                         <div class="col-4">
                             <label>Nombre</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="nombre" [(ngModel)]="cliente.nombre">
                         </div>
                         <div class="col-4">
                             <label>Apellido</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="apellido" [(ngModel)]="cliente.apellido">
                         </div>
                     </div>
                 </div>
@@ -158,20 +162,21 @@
                     <div class="row">
                         <div class="col">
                             <label>CUIT/CUIL</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="cuil" [(ngModel)]="cliente.cuil">
                         </div>
 
                         <div class="col">
                             <label>Fecha de Nacimiento</label>
-                            <input type="date" class="form-control">
+                            <input type="date" class="form-control" name="fechaNacimiento" [(ngModel)]="cliente.fechaNacimiento">
                         </div>
 
                         <div class="col">
                             <div>
                                 <label>Sexo</label>
                             </div>
-                            <select class="form-select" name="z">
-                                <option selected hidden value="a">Sexo</option>
+                            <select class="form-select" name="sexo" [(ngModel)]="cliente.sexo">
+                                <option selected hidden value="Sexo">Sexo</option>
+                                <option *ngFor="let sexo of listaSexo" [value]="sexo">{{sexo}}</option>
                             </select>
                         </div>
                     </div>
@@ -181,15 +186,15 @@
                     <div class="row">
                         <div class="col">
                             <label>Ciudad</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="ciudad" [(ngModel)]="cliente.ciudad">
                         </div>
                         <div class="col">
                             <label>Provincia</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="provincia" [(ngModel)]="cliente.provincia">
                         </div>
                         <div class="col">
                             <label>Codigo Postal</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="codigoPostal" [(ngModel)]="cliente.codigoPostal">
                         </div>
                     </div>
                 </div>
@@ -198,15 +203,15 @@
                     <div class="row">
                         <div class="col">
                             <label>E-mail</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="email" [(ngModel)]="cliente.email">
                         </div>
                         <div class="col">
                             <label>Celular</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="celular" [(ngModel)]="cliente.celular">
                         </div>
                         <div class="col">
                             <label>Nombre de la empresa (Opcional)</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="empresa" [(ngModel)]="cliente.empresa">
                         </div>
                     </div>
                 </div>
@@ -215,7 +220,7 @@
                     <div class="row">
                         <div class="col">
                             <label>Comentarios</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="comentarios" [(ngModel)]="cliente.comentarios">
                         </div>
                     </div>
                 </div>

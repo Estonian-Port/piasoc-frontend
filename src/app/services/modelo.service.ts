@@ -17,7 +17,7 @@ export class ModeloService {
 
   constructor(private httpClient: HttpClient) { }
 
-  async getAllByMarcaAndTipoVehiculo(tipoVehiculo: String, marca: String) {
+  async getAllByMarcaAndTipoVehiculo(tipoVehiculo: string, marca: string) {
     const modelosJSON$ = this.httpClient.put<ModeloJSON[]>(REST_SERVER_URL + MODELO +'/getAllByMarcaAndTipoVehiculo/' + tipoVehiculo, marca, httpOptions)
     const modelos = await lastValueFrom(modelosJSON$)
     return modelos.map((modelo) => Modelo.fromJson(modelo))

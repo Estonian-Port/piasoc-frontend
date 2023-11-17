@@ -10,6 +10,7 @@ import { NavbarComponent } from './components/navbar/navbar.component'
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { StepBoxComponent } from './components/step-box/step-box.component';
+import { StringSinUnderscorePipe } from './pipes/string-sin-underscore.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { StepBoxComponent } from './components/step-box/step-box.component';
     CotizacionComponent,
     SegurosComponent,
     NavbarComponent,
-    StepBoxComponent
+    StepBoxComponent,
+    StringSinUnderscorePipe
   ],
   imports: [
     BrowserModule,
