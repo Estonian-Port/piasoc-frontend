@@ -95,6 +95,7 @@
                     <div class="col-4">
                         <h4>¿Cuántos KMS manejás al año?</h4> 
                         <select class="form-select" name="interavaloKilometros" [(ngModel)]="datosVehiculo.interavaloKilometros">
+                            <option selected hidden value="0">KMS manejados</option>
                             <option *ngFor="let kms of listaIntervaloKilometros" [value]="kms">{{kms | stringSinUnderscore}}</option>
                         </select>
                     </div>
@@ -113,7 +114,8 @@
 
                     <div class="col-4">
                         <h4>Tipo de Seguro</h4> 
-                        <select class="form-select" name="tipoSeguro" [(ngModel)]="datosVehiculo.tipoSeguro">
+                        <select class="form-select" name="tipoSeguro" [(ngModel)]="datosVehiculo.tipoSeguro">}
+                            <option selected hidden value="0">Tipo de seguro</option>
                             <option *ngFor="let seguro of listaTipoSeguro" [value]="seguro">{{seguro | stringSinUnderscore}}</option>
                         </select>
                     </div>
@@ -122,6 +124,7 @@
 
                         <h4>Edad</h4> 
                         <select class="form-select" name="intervaloEdad" [(ngModel)]="datosVehiculo.intervaloEdad">
+                            <option selected hidden value="0">Edad</option>
                             <option *ngFor="let edad of listaIntervaloEdad" [value]="edad">{{edad | stringSinUnderscore}}</option>
                         </select>
                     </div>
@@ -147,30 +150,30 @@
                     <h2>Datos de contacto</h2> 
 
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-md-4 col-sm-12">
                             <label>Nombre</label>
                             <input type="text" class="form-control" name="nombre" [(ngModel)]="cliente.nombre">
                         </div>
-                        <div class="col-4">
+                        <div class="col-md-4 col-sm-12">
                             <label>Apellido</label>
                             <input type="text" class="form-control" name="apellido" [(ngModel)]="cliente.apellido">
                         </div>
                     </div>
                 </div>
                 
-                <div class="container">
+                <div class="container mt-3">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-md-4 col-sm-12">
                             <label>CUIT/CUIL</label>
                             <input type="text" class="form-control" name="cuil" [(ngModel)]="cliente.cuil">
                         </div>
 
-                        <div class="col">
+                        <div class="col-md-4 col-sm-12">
                             <label>Fecha de Nacimiento</label>
                             <input type="date" class="form-control" name="fechaNacimiento" [(ngModel)]="cliente.fechaNacimiento">
                         </div>
 
-                        <div class="col">
+                        <div class="col-md-4 col-sm-12">
                             <div>
                                 <label>Sexo</label>
                             </div>
@@ -182,48 +185,48 @@
                     </div>
                 </div>
 
-                <div class="container">
+                <div class="container mt-3">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-md-4 col-sm-12">
                             <label>Ciudad</label>
                             <input type="text" class="form-control" name="ciudad" [(ngModel)]="cliente.ciudad">
                         </div>
-                        <div class="col">
+                        <div class="col-md-4 col-sm-12">
                             <label>Provincia</label>
                             <input type="text" class="form-control" name="provincia" [(ngModel)]="cliente.provincia">
                         </div>
-                        <div class="col">
+                        <div class="col-md-4 col-sm-12">
                             <label>Codigo Postal</label>
                             <input type="text" class="form-control" name="codigoPostal" [(ngModel)]="cliente.codigoPostal">
                         </div>
                     </div>
                 </div>
 
-                <div class="container">
+                <div class="container mt-3">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-md-4 col-sm-12">
                             <label>E-mail</label>
                             <input type="text" class="form-control" name="email" [(ngModel)]="cliente.email">
                         </div>
-                        <div class="col">
+                        <div class="col-md-4 col-sm-12">
                             <label>Celular</label>
                             <input type="text" class="form-control" name="celular" [(ngModel)]="cliente.celular">
                         </div>
-                        <div class="col">
+                        <div class="col-md-4 col-sm-12">
                             <label>Nombre de la empresa (Opcional)</label>
                             <input type="text" class="form-control" name="empresa" [(ngModel)]="cliente.empresa">
                         </div>
                     </div>
                 </div>
 
-                <div class="container">
+                <!--div class="container mt-3">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-md-8 col-sm-12">
                             <label>Comentarios</label>
                             <input type="text" class="form-control" name="comentarios" [(ngModel)]="cliente.comentarios">
                         </div>
                     </div>
-                </div>
+                </div -->
             </section>
         </div>
 
