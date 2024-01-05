@@ -1,6 +1,5 @@
-import { Modelo } from "./Modelo";
 
-export class DatosVehiculo{
+export class DatosVehiculoDTO{
 
     constructor(
         public id: number,
@@ -10,6 +9,6 @@ export class DatosVehiculo{
         public garaje : boolean,
         public hijos : boolean,
         public intervaloEdad : number,
-        public interavaloKilometros : number,
+        public intervaloKilometros : number,
         public tipoSeguro : number){}
 }

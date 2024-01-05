@@ -37,7 +37,7 @@
                         <div class="col-md-3 col-sm-12 mb-4">
                             <select class="form-select" name="modeloSeleccionado" [(ngModel)]="modeloSeleccionado">
                                 <option selected hidden value="Modelo">Modelo</option>
-                                <option *ngFor="let modelo of listaModelo" [value]="modelo">{{modelo.nombre}}</option>
+                                <option *ngFor="let modelo of listaModelo" [value]="modelo.nombre">{{modelo.nombre}}</option>
                             </select>
                         </div>
 
@@ -95,7 +95,7 @@
 
                     <div class="col-4">
                         <h4>¿Cuántos KMS manejás al año?</h4> 
-                        <select class="form-select" name="interavaloKilometros" [(ngModel)]="datosVehiculo.interavaloKilometros">
+                        <select class="form-select" name="interavaloKilometros" [(ngModel)]="datosVehiculo.intervaloKilometros">
                             <option selected hidden value="0">KMS manejados</option>
                             <option *ngFor="let kms of listaIntervaloKilometros" [value]="kms">{{kms | stringSinUnderscore}}</option>
                         </select>

@@ -6,11 +6,12 @@ import { MarcaService } from 'src/app/services/marca.service';
 import { TipoVehiculoService } from 'src/app/services/tipo-vehiculo.service';
 import { GenericItem } from 'src/app/model/GenericItem';
 import { Router } from '@angular/router';
-import { Cotizacion } from 'src/app/model/Cotizacion';
-import { DatosVehiculo } from 'src/app/model/DatosVehiculo';
+import { CotizacionDTO } from 'src/app/model/Cotizacion';
+import { DatosVehiculoDTO } from 'src/app/model/DatosVehiculo';
 import { Cliente } from 'src/app/model/Cliente';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { DatosVehiculoService } from 'src/app/services/datos-vehiculo.service';
+import { CotizacionService } from 'src/app/services/cotizacion.service';
 
 @Component({
   selector: 'app-cotizacion',
@@ -25,7 +26,7 @@ export class CotizacionComponent implements OnInit {
   listaMarca: Array<Marca> = []
   marcaSeleccionada: string = "Marca"
 
-  listaModelo: Modelo[] = []
+  listaModelo: Array<Modelo> = []
   modeloSeleccionado: string = "Modelo"
 
   listaAnio: number[] = []
@@ -36,9 +37,9 @@ export class CotizacionComponent implements OnInit {
   listaIntervaloKilometros: string[] = []
   listaTipoSeguro: string[] = []
 
-  datosVehiculo : DatosVehiculo = new DatosVehiculo(0,"",false,false,false,false,0,0,0)
+  datosVehiculo : DatosVehiculoDTO = new DatosVehiculoDTO(0,"",false,false,false,false,0,0,0)
   cliente : Cliente = new Cliente(0,"","","Sexo",0,new Date(),"","","",0,"",0,"")
-  cotizacion : Cotizacion = new Cotizacion(0,this.datosVehiculo,this.cliente)
+  cotizacionDto : CotizacionDTO = new CotizacionDTO(0,this.datosVehiculo,this.cliente)
 
   step : number = 1
   listaStepBox : Array<GenericItem> = [
@@ -53,7 +54,7 @@ export class CotizacionComponent implements OnInit {
 
   constructor(public tipoVehiculoService : TipoVehiculoService, public marcaService : MarcaService, 
     public modeloService : ModeloService, public router : Router, public clienteService : ClienteService,
-    public datosVehiculoService : DatosVehiculoService) { }
+    public datosVehiculoService : DatosVehiculoService, public cotizacionService : CotizacionService) { }
 
   async ngOnInit(): Promise<void> {
     
@@ -134,22 +135,23 @@ export class CotizacionComponent implements OnInit {
     this.botonSiguienteChangeName()
   }
   
-  enviarFormulario() {
+  async enviarFormulario() {
     if(this.step == this.listaStepBox.length + 1){
       //this.eventoSaveError.condicional = false
 
       this.datosVehiculo.modelo = this.modeloSeleccionado
+      
+      console.log(this.cotizacionDto)
 
-      console.log(this.cotizacion)
-      /*
       try{
-        //await this.eventoService.save(this.evento)
-        this.router.navigateByUrl('/')
+        var a = await this.cotizacionService.save(this.cotizacionDto)
+
+        console.log(a)
+        //this.router.navigateByUrl('/')
       }catch(error){
         //this.eventoSaveError.condicional = true
       }
 
-      */
     }
   }
 
