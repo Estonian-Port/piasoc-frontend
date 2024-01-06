@@ -1,15 +1,15 @@
 .seguros h2{
-    width: 100%;
-    color: white;
-    font-size: 36px;
-    padding: 30px 0;
+    font-size: 40px;
+    font-weight: bold;
+    color: var(--colorPrincipal);
+    padding: 1em;
     text-align: center;
-    background: linear-gradient(to bottom right, var(--colorPrincipal), var(--colorSecundario));
 }
+
 .seguros h3{
     font-size: 26px;
-    margin-top: 65px;
-    margin-bottom: 15px;
+    margin-top: 1em;
+    margin-bottom: 1em;
     color: var(--colorTexto);
 }
 

@@ -115,7 +115,7 @@
 
                     <div class="col-4">
                         <h4>Tipo de Seguro</h4> 
-                        <select class="form-select" name="tipoSeguro" [(ngModel)]="datosVehiculo.tipoSeguro">}
+                        <select class="form-select" name="tipoSeguro" [(ngModel)]="datosVehiculo.tipoSeguro">
                             <option selected hidden value="0">Tipo de seguro</option>
                             <option *ngFor="let seguro of listaTipoSeguro" [value]="seguro">{{seguro | stringSinUnderscore}}</option>
                         </select>
@@ -152,12 +152,23 @@
 
                     <div class="row">
                         <div class="col-md-4 col-sm-12">
-                            <label>Nombre</label>
-                            <input type="text" class="form-control" name="nombre" [(ngModel)]="cliente.nombre">
+                            <div class="row">
+                                <label class="col-4">Nombre</label>
+                                <div class="col-8" *ngIf="(nombre.invalid && nombre.touched) || submited">
+                                    <span *ngIf="nombre.errors" class="invalid-validator">Ingrese su nombre</span>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" name="nombre" [(ngModel)]="cliente.nombre" [formControl]="nombre">
                         </div>
+
                         <div class="col-md-4 col-sm-12">
-                            <label>Apellido</label>
-                            <input type="text" class="form-control" name="apellido" [(ngModel)]="cliente.apellido">
+                            <div class="row">
+                                <label class="col-4">Apellido</label>
+                                <div *ngIf="(apellido.invalid && apellido.touched) || submited" class="col-8">
+                                    <div *ngIf="apellido.errors" class="invalid-validator">Ingrese su apellido</div>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" name="apellido" [(ngModel)]="cliente.apellido" [formControl]="apellido">
                         </div>
                     </div>
                 </div>
@@ -165,20 +176,33 @@
                 <div class="container mt-3">
                     <div class="row">
                         <div class="col-md-4 col-sm-12">
-                            <label>CUIT/CUIL</label>
-                            <input type="text" class="form-control" name="cuil" [(ngModel)]="cliente.cuil">
-                        </div>
-
-                        <div class="col-md-4 col-sm-12">
-                            <label>Fecha de Nacimiento</label>
-                            <input type="date" class="form-control" name="fechaNacimiento" [(ngModel)]="cliente.fechaNacimiento">
-                        </div>
-
-                        <div class="col-md-4 col-sm-12">
-                            <div>
-                                <label>Sexo</label>
+                            <div class="row">
+                                <label class="col-4">CUIT/CUIL</label>
+                                <div *ngIf="(cuil.invalid && cuil.touched) || submited" class="col-8">
+                                    <div *ngIf="cuil.errors" class="invalid-validator">Ingrese su cuil o cuit</div>
+                                </div>
                             </div>
-                            <select class="form-select" name="sexo" [(ngModel)]="cliente.sexo">
+                            <input type="number" class="form-control" name="cuil" [(ngModel)]="cliente.cuil" [formControl]="cuil">
+                        </div>
+
+                        <div class="col-md-4 col-sm-12">
+                            <div class="row">
+                                <label class="col-7">Fecha de Nacimiento</label>
+                                <div *ngIf="fechaNacimiento.invalid && submited" class="col-8">
+                                    <div *ngIf="fechaNacimiento.errors" class="invalid-validator">Ingrese su fecha de nacimiento</div>
+                                </div>
+                            </div>
+                            <input type="date" class="form-control" name="fechaNacimiento" [(ngModel)]="cliente.fechaNacimiento" #fechaNacimiento="ngModel" required>
+                        </div>
+
+                        <div class="col-md-4 col-sm-12">
+                            <div class="row">
+                                <label class="col-4">Sexo</label>
+                                <div *ngIf="(sexo.invalid && sexo.touched) || submited" class="col-8">
+                                    <div *ngIf="sexo.errors" class="invalid-validator">Ingrese su sexo</div>
+                                </div>
+                            </div>  
+                            <select class="form-select" name="sexo" [(ngModel)]="cliente.sexo" #sexo="ngModel" required>
                                 <option selected hidden value="Sexo">Sexo</option>
                                 <option *ngFor="let sexo of listaSexo" [value]="sexo">{{sexo}}</option>
                             </select>
@@ -189,16 +213,31 @@
                 <div class="container mt-3">
                     <div class="row">
                         <div class="col-md-4 col-sm-12">
-                            <label>Ciudad</label>
-                            <input type="text" class="form-control" name="ciudad" [(ngModel)]="cliente.ciudad">
+                            <div class="row">
+                                <label class="col-4">Ciudad</label>
+                                <div *ngIf="(ciudad.invalid && ciudad.touched) || submited" class="col-8">
+                                    <div *ngIf="ciudad.errors" class="invalid-validator">Ingrese su ciudad</div>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" name="ciudad" [(ngModel)]="cliente.ciudad" #ciudad="ngModel" required>
                         </div>
                         <div class="col-md-4 col-sm-12">
-                            <label>Provincia</label>
-                            <input type="text" class="form-control" name="provincia" [(ngModel)]="cliente.provincia">
+                            <div class="row">
+                                <label class="col-4">Provincia</label>
+                                <div *ngIf="(provincia.invalid && provincia.touched) || submited" class="col-8">
+                                    <div *ngIf="provincia.errors" class="invalid-validator">Ingrese su provincia</div>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" name="provincia" [(ngModel)]="cliente.provincia" #provincia="ngModel" required>
                         </div>
                         <div class="col-md-4 col-sm-12">
-                            <label>Codigo Postal</label>
-                            <input type="text" class="form-control" name="codigoPostal" [(ngModel)]="cliente.codigoPostal">
+                            <div class="row">
+                                <label class="col-4">Codigo Postal</label>
+                                <div *ngIf="(codigoPostal.invalid && codigoPostal.touched) || submited" class="col-8">
+                                    <div *ngIf="codigoPostal.errors" class="invalid-validator">Ingrese su provincia</div>
+                                </div>
+                            </div>
+                            <input type="number" class="form-control" name="codigoPostal" [(ngModel)]="cliente.codigoPostal" #codigoPostal="ngModel" required>
                         </div>
                     </div>
                 </div>
@@ -206,12 +245,22 @@
                 <div class="container mt-3">
                     <div class="row">
                         <div class="col-md-4 col-sm-12">
-                            <label>E-mail</label>
-                            <input type="text" class="form-control" name="email" [(ngModel)]="cliente.email">
+                            <div class="row">
+                                <label class="col-4">E-mail</label>
+                                <div *ngIf="(email.invalid && email.touched) || submited" class="col-8">
+                                    <div *ngIf="email.errors" class="invalid-validator">Ingrese su e-mail</div>
+                                </div>
+                            </div>
+                            <input type="email" class="form-control" name="email" [(ngModel)]="cliente.email" #email="ngModel" required>
                         </div>
                         <div class="col-md-4 col-sm-12">
-                            <label>Celular</label>
-                            <input type="text" class="form-control" name="celular" [(ngModel)]="cliente.celular">
+                            <div class="row">
+                                <label class="col-4">Celular</label>
+                                <div *ngIf="(celular.invalid && celular.touched) || submited" class="col-8">
+                                    <div *ngIf="celular.errors" class="invalid-validator">Ingrese su celular</div>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" name="celular" [(ngModel)]="cliente.celular" #celular="ngModel" required>
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <label>Nombre de la empresa (Opcional)</label>
@@ -238,3 +287,5 @@
 
     </form>
 </div>
+
+<app-modal [cliente]="cliente"></app-modal>

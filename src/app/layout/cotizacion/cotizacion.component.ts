@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Marca } from 'src/app/model/Marca';
 import { Modelo } from 'src/app/model/Modelo';
 import { ModeloService } from 'src/app/services/modelo.service';
@@ -12,6 +12,8 @@ import { Cliente } from 'src/app/model/Cliente';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { DatosVehiculoService } from 'src/app/services/datos-vehiculo.service';
 import { CotizacionService } from 'src/app/services/cotizacion.service';
+import { ModalComponent } from 'src/app/components/modal/modal.component';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cotizacion',
@@ -51,6 +53,19 @@ export class CotizacionComponent implements OnInit {
 
   botonSiguienteFinalizado : string = "Siguiente"
   botonAtrasDisabled = true
+
+  @ViewChild(ModalComponent) 
+  modal!: ModalComponent;
+
+
+  nombre = new FormControl('', [Validators.required, Validators.minLength(3)])
+  apellido = new FormControl('', [Validators.required, Validators.minLength(3)])
+  cuil = new FormControl('', [Validators.required, Validators.min(999999999)])
+  email = new FormControl('', [Validators.required, Validators.email])
+  
+
+
+  submited : Boolean = false
 
   constructor(public tipoVehiculoService : TipoVehiculoService, public marcaService : MarcaService, 
     public modeloService : ModeloService, public router : Router, public clienteService : ClienteService,
@@ -103,13 +118,13 @@ export class CotizacionComponent implements OnInit {
 
   async siguiente(){
 
-    if(this.step >= 1 && this.step < this.listaStepBox.length + 1){
+    if(this.step >= 1 && this.step < this.listaStepBox.length){
       this.step += 1
+    }else{
+      this.enviarFormulario()
     }
 
     this.botonAtrasDisabledChange()
-
-    this.enviarFormulario()
 
     this.botonSiguienteChangeName()
 
@@ -136,22 +151,22 @@ export class CotizacionComponent implements OnInit {
   }
   
   async enviarFormulario() {
-    if(this.step == this.listaStepBox.length + 1){
-      //this.eventoSaveError.condicional = false
+
+    //this.eventoSaveError.condicional = false
+
+    this.submited = true
+
+    if(false){
+      this.modal.mostrarModal()
 
       this.datosVehiculo.modelo = this.modeloSeleccionado
-      
-      console.log(this.cotizacionDto)
 
       try{
         var a = await this.cotizacionService.save(this.cotizacionDto)
 
-        console.log(a)
-        //this.router.navigateByUrl('/')
       }catch(error){
         //this.eventoSaveError.condicional = true
       }
-
     }
   }
 
