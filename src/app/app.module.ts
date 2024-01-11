@@ -28,7 +28,6 @@ import { ModalComponent } from './components/modal/modal.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
     ReactiveFormsModule
   ],
   providers: [],

@@ -13,7 +13,7 @@ import { ClienteService } from 'src/app/services/cliente.service';
 import { DatosVehiculoService } from 'src/app/services/datos-vehiculo.service';
 import { CotizacionService } from 'src/app/services/cotizacion.service';
 import { ModalComponent } from 'src/app/components/modal/modal.component';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cotizacion',
@@ -57,13 +57,17 @@ export class CotizacionComponent implements OnInit {
   @ViewChild(ModalComponent) 
   modal!: ModalComponent;
 
-
-  nombre = new FormControl('', [Validators.required, Validators.minLength(3)])
-  apellido = new FormControl('', [Validators.required, Validators.minLength(3)])
-  cuil = new FormControl('', [Validators.required, Validators.min(999999999)])
-  email = new FormControl('', [Validators.required, Validators.email])
-  
-
+  //formGroup = new FormGroup({
+    nombre = new FormControl('', [Validators.required, Validators.minLength(3)])
+    apellido = new FormControl('', [Validators.required, Validators.minLength(3)])
+    cuil = new FormControl('', [Validators.required, Validators.min(999999999)])
+    email = new FormControl('', [Validators.required, Validators.email])
+    ciudad = new FormControl('', [Validators.required, Validators.minLength(3)])
+    provincia = new FormControl('', [Validators.required, Validators.minLength(3)])
+    codigoPostal = new FormControl('', [Validators.required, Validators.min(999)])
+    celular = new FormControl('', [Validators.required, Validators.min(999999999)])
+    sexo = new FormControl('', [Validators.required, Validators.minLength(4)])
+    //})
 
   submited : Boolean = false
 
@@ -72,7 +76,7 @@ export class CotizacionComponent implements OnInit {
     public datosVehiculoService : DatosVehiculoService, public cotizacionService : CotizacionService) { }
 
   async ngOnInit(): Promise<void> {
-    
+
     this.listaTipoVehiculo = await this.tipoVehiculoService.getAllTipoVehiculo()
 
     this.listaSexo = await this.clienteService.getAllSexo()

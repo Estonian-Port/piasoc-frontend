@@ -1,4 +1,4 @@
-<div class="nuevo-evento">
+<div class="cotizacion">
 
     <div class="row justify-content-evenly hide-on-phone">
         <div *ngFor="let stepBox of listaStepBox" class="col-md-2">
@@ -10,7 +10,7 @@
         </div>
     </div>
     
-    <form id="signup-form" class="signup-form">
+    <form id="signup-form" class="cotizacion-form">
 
         <!-- SECTION 1 -->
         <div [ngStyle]="{'display': (isStep(1)) ? 'block' : 'none' }">
@@ -149,25 +149,28 @@
 
                     <h2>Datos de contacto</h2> 
 
+
                     <div class="row">
                         <div class="col-md-4 col-sm-12">
                             <div class="row">
                                 <label class="col-4">Nombre</label>
-                                <div class="col-8" *ngIf="(nombre.invalid && nombre.touched) || submited">
+                                <div class="col-8" *ngIf="nombre.invalid && nombre.touched || submited">
                                     <span *ngIf="nombre.errors" class="invalid-validator">Ingrese su nombre</span>
+
                                 </div>
                             </div>
-                            <input type="text" class="form-control" name="nombre" [(ngModel)]="cliente.nombre" [formControl]="nombre">
+
+                            <input type="text" class="form-control" name="nombre" [formControl]="nombre">
                         </div>
 
                         <div class="col-md-4 col-sm-12">
                             <div class="row">
                                 <label class="col-4">Apellido</label>
-                                <div *ngIf="(apellido.invalid && apellido.touched) || submited" class="col-8">
+                                <div class="col-8" *ngIf="(apellido.invalid && apellido.touched) || submited">
                                     <div *ngIf="apellido.errors" class="invalid-validator">Ingrese su apellido</div>
                                 </div>
                             </div>
-                            <input type="text" class="form-control" name="apellido" [(ngModel)]="cliente.apellido" [formControl]="apellido">
+                            <input type="text" class="form-control" name="apellido" [ngClass]="{'is-invalid': apellido.errors && submited }" [(ngModel)]="cliente.apellido" [formControl]="apellido">
                         </div>
                     </div>
                 </div>
@@ -177,32 +180,34 @@
                         <div class="col-md-4 col-sm-12">
                             <div class="row">
                                 <label class="col-4">CUIT/CUIL</label>
-                                <div *ngIf="(cuil.invalid && cuil.touched) || submited" class="col-8">
+                                <div class="col-8" *ngIf="(cuil.invalid && cuil.touched) || submited">
                                     <div *ngIf="cuil.errors" class="invalid-validator">Ingrese su cuil o cuit</div>
                                 </div>
                             </div>
-                            <input type="number" class="form-control" name="cuil" [(ngModel)]="cliente.cuil" [formControl]="cuil">
+                            <input type="number" class="form-control" name="cuil" [ngClass]="{'is-invalid': cuil.errors && submited }" [(ngModel)]="cliente.cuil" [formControl]="cuil">
                         </div>
 
                         <div class="col-md-4 col-sm-12">
                             <div class="row">
                                 <label class="col-7">Fecha de Nacimiento</label>
-                                <div *ngIf="fechaNacimiento.invalid && submited" class="col-8">
+                                <div class="col-8" *ngIf="fechaNacimiento.invalid && submited">
                                     <div *ngIf="fechaNacimiento.errors" class="invalid-validator">Ingrese su fecha de nacimiento</div>
                                 </div>
                             </div>
-                            <input type="date" class="form-control" name="fechaNacimiento" [(ngModel)]="cliente.fechaNacimiento" #fechaNacimiento="ngModel" required>
+                            <input type="date" class="form-control" name="fechaNacimiento" [(ngModel)]="cliente.fechaNacimiento">
                         </div>
 
                         <div class="col-md-4 col-sm-12">
                             <div class="row">
+                                {{sexo.invalid}}{{sexo.touched}}{{sexo.errors}}
+                                
                                 <label class="col-4">Sexo</label>
-                                <div *ngIf="(sexo.invalid && sexo.touched) || submited" class="col-8">
+                                <div class="col-8" *ngIf="(sexo.invalid && sexo.touched) || submited">
                                     <div *ngIf="sexo.errors" class="invalid-validator">Ingrese su sexo</div>
                                 </div>
                             </div>  
-                            <select class="form-select" name="sexo" [(ngModel)]="cliente.sexo" #sexo="ngModel" required>
-                                <option selected hidden value="Sexo">Sexo</option>
+                            <select class="form-select" name="sexo" [(ngModel)]="cliente.sexo" [formControl]="sexo">
+                                <option selected value="">Sexo</option>
                                 <option *ngFor="let sexo of listaSexo" [value]="sexo">{{sexo}}</option>
                             </select>
                         </div>
@@ -214,29 +219,29 @@
                         <div class="col-md-4 col-sm-12">
                             <div class="row">
                                 <label class="col-4">Ciudad</label>
-                                <div *ngIf="(ciudad.invalid && ciudad.touched) || submited" class="col-8">
+                                <div class="col-8" *ngIf="(ciudad.invalid && ciudad.touched) || submited">
                                     <div *ngIf="ciudad.errors" class="invalid-validator">Ingrese su ciudad</div>
                                 </div>
                             </div>
-                            <input type="text" class="form-control" name="ciudad" [(ngModel)]="cliente.ciudad" #ciudad="ngModel" required>
+                            <input type="text" class="form-control" name="ciudad" [(ngModel)]="cliente.ciudad" [formControl]="ciudad">
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <div class="row">
                                 <label class="col-4">Provincia</label>
-                                <div *ngIf="(provincia.invalid && provincia.touched) || submited" class="col-8">
+                                <div class="col-8" *ngIf="(provincia.invalid && provincia.touched) || submited">
                                     <div *ngIf="provincia.errors" class="invalid-validator">Ingrese su provincia</div>
                                 </div>
                             </div>
-                            <input type="text" class="form-control" name="provincia" [(ngModel)]="cliente.provincia" #provincia="ngModel" required>
+                            <input type="text" class="form-control" name="provincia" [(ngModel)]="cliente.provincia" [formControl]="provincia">
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <div class="row">
                                 <label class="col-4">Codigo Postal</label>
-                                <div *ngIf="(codigoPostal.invalid && codigoPostal.touched) || submited" class="col-8">
-                                    <div *ngIf="codigoPostal.errors" class="invalid-validator">Ingrese su provincia</div>
+                                <div class="col-8" *ngIf="(codigoPostal.invalid && codigoPostal.touched) || submited">
+                                    <div *ngIf="codigoPostal.errors" class="invalid-validator">Ingrese su codigo postal</div>
                                 </div>
                             </div>
-                            <input type="number" class="form-control" name="codigoPostal" [(ngModel)]="cliente.codigoPostal" #codigoPostal="ngModel" required>
+                            <input type="number" class="form-control" name="codigoPostal" [(ngModel)]="cliente.codigoPostal" [formControl]="codigoPostal">
                         </div>
                     </div>
                 </div>
@@ -246,20 +251,20 @@
                         <div class="col-md-4 col-sm-12">
                             <div class="row">
                                 <label class="col-4">E-mail</label>
-                                <div *ngIf="(email.invalid && email.touched) || submited" class="col-8">
+                                <div class="col-8" *ngIf="(email.invalid && email.touched) || submited">
                                     <div *ngIf="email.errors" class="invalid-validator">Ingrese su e-mail</div>
                                 </div>
                             </div>
-                            <input type="email" class="form-control" name="email" [(ngModel)]="cliente.email" #email="ngModel" required>
+                            <input type="email" class="form-control" name="email" [(ngModel)]="cliente.email" [formControl]="email">
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <div class="row">
                                 <label class="col-4">Celular</label>
-                                <div *ngIf="(celular.invalid && celular.touched) || submited" class="col-8">
+                                <div class="col-8" *ngIf="(celular.invalid && celular.touched) || submited">
                                     <div *ngIf="celular.errors" class="invalid-validator">Ingrese su celular</div>
                                 </div>
                             </div>
-                            <input type="text" class="form-control" name="celular" [(ngModel)]="cliente.celular" #celular="ngModel" required>
+                            <input type="text" class="form-control" name="celular" [(ngModel)]="cliente.celular" [formControl]="celular">
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <label>Nombre de la empresa (Opcional)</label>
@@ -268,14 +273,6 @@
                     </div>
                 </div>
 
-                <!--div class="container mt-3">
-                    <div class="row">
-                        <div class="col-md-8 col-sm-12">
-                            <label>Comentarios</label>
-                            <input type="text" class="form-control" name="comentarios" [(ngModel)]="cliente.comentarios">
-                        </div>
-                    </div>
-                </div -->
             </section>
         </div>
 
