@@ -1,4 +1,4 @@
-.seguros h2{
+.titulo{
     font-size: 40px;
     font-weight: bold;
     color: var(--colorPrincipal);
@@ -6,17 +6,21 @@
     text-align: center;
 }
 
-.seguros h3{
-    font-size: 26px;
+.subtitulo{
     margin-top: 1em;
     margin-bottom: 1em;
     color: var(--colorTexto);
+    text-align: center;
 }
 
 .empresas, .personas{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.personas{
+    margin-top: 2em;
 }
 
 ul{
@@ -73,9 +77,5 @@ li img{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#personas{
-    margin-top: 60px;
 }
 

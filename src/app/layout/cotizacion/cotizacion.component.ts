@@ -7,7 +7,6 @@ import { TipoVehiculoService } from 'src/app/services/tipo-vehiculo.service';
 import { GenericItem } from 'src/app/model/GenericItem';
 import { Router } from '@angular/router';
 import { CotizacionDTO } from 'src/app/model/Cotizacion';
-import { DatosVehiculoDTO } from 'src/app/model/DatosVehiculo';
 import { Cliente } from 'src/app/model/Cliente';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { DatosVehiculoService } from 'src/app/services/datos-vehiculo.service';
@@ -32,13 +31,12 @@ export class CotizacionComponent implements OnInit {
   listaIntervaloKilometros: string[] = []
   listaTipoSeguro: string[] = []
 
-  datosVehiculo : DatosVehiculoDTO = new DatosVehiculoDTO(0,"",false,false,false,false,0,0,0)
-  cliente : Cliente = new Cliente(0,"","","Sexo",0,new Date(),"","","",0,"",0,"")
-  cotizacionDto : CotizacionDTO = new CotizacionDTO(0,this.datosVehiculo,this.cliente)
+  // TODO Borrar y pasar bien a el modal
+  cliente : Cliente = new Cliente(0,"","","Sexo",0,new Date(),"","","",0,"",0)
 
   step : number = 1
   listaStepBox : Array<GenericItem> = [
-    new GenericItem(1, "Tipo de Vehiculo"),
+    new GenericItem(1, "Tipo de vehiculo"),
     new GenericItem(2, "Datos del vehiculo"),
     new GenericItem(3, "Seguro"),
     new GenericItem(4, "Contacto"),
@@ -59,68 +57,68 @@ export class CotizacionComponent implements OnInit {
     private formBuilder: FormBuilder) {
 
       this.formGroup = this.formBuilder.group({
-        tipoVehiculo: new FormControl('', [Validators.required]),
-        marca: new FormControl('', [Validators.required]),
-        modelo: new FormControl('', [Validators.required]),
-        anio: new FormControl('', [Validators.required]),
+        datosVehiculoDto: this.formBuilder.group({
+          tipoVehiculo: new FormControl('', [Validators.required]),
+          marca: new FormControl('', [Validators.required]),
+          modelo: new FormControl('', [Validators.required]),
+          anio: new FormControl('', [Validators.required]),
 
-        particular: new FormControl('', [Validators.required]),
-        alarma: new FormControl('', [Validators.required]),
-        garaje: new FormControl('', [Validators.required]),
-        hijos: new FormControl('', [Validators.required]),
+          particular: new FormControl(false, [Validators.required]),
+          alarma: new FormControl(false, [Validators.required]),
+          garaje: new FormControl(false, [Validators.required]),
+          hijos: new FormControl(false, [Validators.required]),
 
-        intervaloKilometros: new FormControl('', [Validators.required]),
-        intervaloEdad: new FormControl('', [Validators.required]),
-        tipoSeguro: new FormControl('', [Validators.required]),
-
-        nombre: new FormControl('', [Validators.required, Validators.minLength(3)]),
-        apellido: new FormControl('', [Validators.required, Validators.minLength(3)]),
-        cuil: new FormControl('', [Validators.required, Validators.min(999999999)]),
-        email: new FormControl('', [Validators.required, Validators.email]),
-        ciudad: new FormControl('', [Validators.required, Validators.minLength(3)]),
-        provincia: new FormControl('', [Validators.required, Validators.minLength(3)]),
-        codigoPostal: new FormControl('', [Validators.required, Validators.min(999)]),
-        celular: new FormControl('', [Validators.required, Validators.min(999999999)]),
-        sexo: new FormControl('', [Validators.required]),
-        fechaNacimiento: new FormControl('', [Validators.required]),
-        empresa: new FormControl('', [Validators.required])
-
+          intervaloKilometros: new FormControl('', [Validators.required]),
+          intervaloEdad: new FormControl('', [Validators.required]),
+          tipoSeguro: new FormControl('', [Validators.required]),
+        }),
+        cliente: this.formBuilder.group({
+          nombre: new FormControl('', [Validators.required, Validators.minLength(3)]),
+          apellido: new FormControl('', [Validators.required, Validators.minLength(3)]),
+          cuil: new FormControl('', [Validators.required, Validators.min(999999999)]),
+          email: new FormControl('', [Validators.required, Validators.email]),
+          ciudad: new FormControl('', [Validators.required, Validators.minLength(3)]),
+          provincia: new FormControl('', [Validators.required, Validators.minLength(3)]),
+          codigoPostal: new FormControl('', [Validators.required, Validators.min(999)]),
+          celular: new FormControl('', [Validators.required, Validators.min(999999999)]),
+          sexo: new FormControl('', [Validators.required]),
+          fechaNacimiento: new FormControl('', [Validators.required]),
+          empresa: new FormControl('')
+        })
       })
 
   }
 
-  get tipoVehiculo(){ return this.formGroup.get("tipoVehiculo") }
-  get marca(){ return this.formGroup.get("marca") }
-  get modelo(){ return this.formGroup.get("modelo") }
-  get anio(){ return this.formGroup.get("anio") }
+  get tipoVehiculo(){ return this.formGroup.get('datosVehiculoDto')?.get('tipoVehiculo') }
+  get marca(){ return this.formGroup.get('datosVehiculoDto')?.get("marca") }
+  get modelo(){ return this.formGroup.get('datosVehiculoDto')?.get("modelo") }
+  get anio(){ return this.formGroup.get('datosVehiculoDto')?.get("anio") }
 
-  get particular(){ return this.formGroup.get("anio") }
-  get alarma(){ return this.formGroup.get("anio") }
-  get garaje(){ return this.formGroup.get("anio") }
-  get hijos(){ return this.formGroup.get("anio") }
+  get particular(){ return this.formGroup.get('datosVehiculoDto')?.get("particular") }
+  get alarma(){ return this.formGroup.get('datosVehiculoDto')?.get("alarma") }
+  get garaje(){ return this.formGroup.get('datosVehiculoDto')?.get("garage") }
+  get hijos(){ return this.formGroup.get('datosVehiculoDto')?.get("hijos") }
 
-  get intervaloKilometros(){ return this.formGroup.get("anio") }
-  get intervaloEdad(){ return this.formGroup.get("anio") }
-  get tipoSeguro(){ return this.formGroup.get("anio") }
+  get intervaloKilometros(){ return this.formGroup.get('datosVehiculoDto')?.get("intervaloKilometros") }
+  get intervaloEdad(){ return this.formGroup.get('datosVehiculoDto')?.get("intervaloEdad") }
+  get tipoSeguro(){ return this.formGroup.get('datosVehiculoDto')?.get("tipoSeguro") }
 
-  get nombre(){ return this.formGroup.get("nombre") }
-  get apellido(){ return this.formGroup.get("apellido") }
-  get cuil(){ return this.formGroup.get("cuil") }
-  get email(){ return this.formGroup.get("email") }
-  get ciudad(){ return this.formGroup.get("ciudad") }
-  get provincia(){ return this.formGroup.get("provincia") }
-  get codigoPostal(){ return this.formGroup.get("codigoPostal") }
-  get celular(){ return this.formGroup.get("celular") }
-  get sexo(){ return this.formGroup.get("sexo") }
-  get fechaNacimiento(){ return this.formGroup.get("fechaNacimiento") }
+  get nombre(){ return this.formGroup.get('cliente')?.get("nombre") }
+  get apellido(){ return this.formGroup.get('cliente')?.get("apellido") }
+  get cuil(){ return this.formGroup.get('cliente')?.get("cuil") }
+  get email(){ return this.formGroup.get('cliente')?.get("email") }
+  get ciudad(){ return this.formGroup.get('cliente')?.get("ciudad") }
+  get provincia(){ return this.formGroup.get('cliente')?.get("provincia") }
+  get codigoPostal(){ return this.formGroup.get('cliente')?.get("codigoPostal") }
+  get celular(){ return this.formGroup.get('cliente')?.get("celular") }
+  get sexo(){ return this.formGroup.get('cliente')?.get("sexo") }
+  get fechaNacimiento(){ return this.formGroup.get('cliente')?.get("fechaNacimiento") }
 
   
   async ngOnInit(): Promise<void> {
 
     this.listaTipoVehiculo = await this.tipoVehiculoService.getAllTipoVehiculo()
-
     this.listaSexo = await this.clienteService.getAllSexo()
-    
     this.listaIntervaloEdad = await this.datosVehiculoService.getAllIntervaloEdad()
     this.listaIntervaloKilometros = await this.datosVehiculoService.getAlliIntervaloKilometros()
     this.listaTipoSeguro = await this.datosVehiculoService.getAllTipoSeguro()
@@ -132,12 +130,12 @@ export class CotizacionComponent implements OnInit {
 
   cleanMarca(){
     this.listaMarca = []
-    this.formGroup.get('marca')?.setValue("")
+    this.formGroup.get('datosVehiculoDto')?.get('marca')?.setValue("")
   }
 
   cleanModelo(){
     this.listaModelo = []
-    this.formGroup.get('modelo')?.setValue("")
+    this.formGroup.get('datosVehiculoDto')?.get('modelo')?.setValue("")
 
   }
 
@@ -145,12 +143,15 @@ export class CotizacionComponent implements OnInit {
     this.cleanMarca()
     this.cleanModelo()
 
-    this.listaMarca = await this.marcaService.getAllByTipoVehiculo(this.formGroup.get('tipoVehiculo')?.value)
+    this.listaMarca = await this.marcaService.getAllByTipoVehiculo(
+      this.formGroup.get('datosVehiculoDto')?.get('tipoVehiculo')?.value)
   }
 
   async getAllByMarcaAndTipoVehiculo(){
     this.cleanModelo()
-    this.listaModelo = await this.modeloService.getAllByMarcaAndTipoVehiculo(this.formGroup.get('tipoVehiculo')?.value, this.formGroup.get('marca')?.value)
+    this.listaModelo = await this.modeloService.getAllByMarcaAndTipoVehiculo(
+      this.formGroup.get('datosVehiculoDto')?.get('tipoVehiculo')?.value, 
+      this.formGroup.get('datosVehiculoDto')?.get('marca')?.value)
   }
 
   //-------------- Stepper ----------------------
@@ -195,20 +196,20 @@ export class CotizacionComponent implements OnInit {
   
   async enviarFormulario() {
 
-    //this.eventoSaveError.condicional = false
-
     this.submited = true
 
-    if(false){
-      this.modal.mostrarModal()
+    console.log(this.formGroup.valid)
 
-      this.datosVehiculo.modelo = this.formGroup.get('modelo')?.value
+    console.log(new CotizacionDTO(this.formGroup.value))
+    if(this.formGroup.valid){
 
       try{
-        var a = await this.cotizacionService.save(this.cotizacionDto)
+        var response = await this.cotizacionService.save(new CotizacionDTO(this.formGroup.value))
+        console.log(response)
 
+        this.modal.mostrarModal()
       }catch(error){
-        //this.eventoSaveError.condicional = true
+
       }
     }
   }

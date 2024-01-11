@@ -9,16 +9,16 @@ export type CotizacionJSON = {
 
 export class CotizacionDTO {
   
-  constructor(
-    public id: number,
-    public datosVehiculoDto : DatosVehiculoDTO,
-    public cliente : Cliente) {}
+  id: number = 0
+  datosVehiculoDto!: DatosVehiculoDTO
+  cliente!: Cliente
 
-  static fromJson(CotizacionJSON: CotizacionJSON): CotizacionDTO {
-    return new CotizacionDTO(
-      CotizacionJSON.id,
-      CotizacionJSON.datosVehiculoDto,
-      CotizacionJSON.cliente)
+  constructor(init?: Partial<CotizacionDTO>) {
+    Object.assign(this, init);
+   }
+
+  static fromJson(cotizacionJSON: CotizacionJSON): CotizacionDTO {
+    return new CotizacionDTO(cotizacionJSON)
   }
 
   toJSON(): CotizacionJSON {

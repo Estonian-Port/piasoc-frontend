@@ -11,4 +11,5 @@ export class DatosVehiculoDTO{
         public intervaloEdad : number,
         public intervaloKilometros : number,
         public tipoSeguro : number){}
+
 }

@@ -12,7 +12,6 @@ export class Cliente{
         public provincia : string,
         public codigoPostal : number,
         public email : string,
-        public celular : number,
-        public comentarios : string){}
+        public celular : number){}
 
 }

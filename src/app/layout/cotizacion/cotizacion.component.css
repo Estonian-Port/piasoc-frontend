@@ -37,6 +37,11 @@
     color: #dc3545;
 }
 
+.label-with-error{
+    display: flex;
+    justify-content: space-between;
+}
+
 @media (max-width: 768px) {
     .hide-on-phone{
         display: none;
