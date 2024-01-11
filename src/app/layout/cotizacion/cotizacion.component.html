@@ -10,7 +10,7 @@
         </div>
     </div>
     
-    <form id="signup-form" class="cotizacion-form">
+    <form class="cotizacion-form" [formGroup]="formGroup" #signupForm="ngForm">
 
         <!-- SECTION 1 -->
         <div [ngStyle]="{'display': (isStep(1)) ? 'block' : 'none' }">
@@ -18,31 +18,31 @@
                 <div class="container">
                     <h2>Seleccionar Vehiculo</h2>
             
-                    <div class="row">
+                    <div class="row mt-3">
                         <div class="col-md-3 col-sm-12 mb-4">
-                            <select class="form-select" name="tipoVehiculoSeleccionado" [(ngModel)]="tipoVehiculoSeleccionado" (change)="getListaMarcaByTipoVehiculo()">
-                                <option selected hidden value="Tipo Vehiculo">Tipo de vehiculo</option>
+                            <select class="form-select" formControlName="tipoVehiculo" (change)="getListaMarcaByTipoVehiculo()">
+                                <option selected hidden value="">Tipo de vehiculo</option>
                                 <option *ngFor="let tipoVehiculo of listaTipoVehiculo" [value]="tipoVehiculo">{{tipoVehiculo}}</option>
                             </select>
                         </div>
                         
                         <div class="col-md-3 col-sm-12 mb-4">
-                            <select class="form-select" name="marcaSeleccionada" [(ngModel)]="marcaSeleccionada" (change)="getAllByMarcaAndTipoVehiculo()">
-                                <option selected hidden value="Marca">Marca</option>
+                            <select class="form-select" formControlName="marca" (change)="getAllByMarcaAndTipoVehiculo()">
+                                <option selected hidden value="">Marca</option>
                                 <option *ngFor="let marca of listaMarca" [value]="marca.nombre">{{marca.nombre}}</option>
                             </select>
                         </div>
 
                         <div class="col-md-3 col-sm-12 mb-4">
-                            <select class="form-select" name="modeloSeleccionado" [(ngModel)]="modeloSeleccionado">
-                                <option selected hidden value="Modelo">Modelo</option>
+                            <select class="form-select" formControlName="modelo">
+                                <option selected hidden value="">Modelo</option>
                                 <option *ngFor="let modelo of listaModelo" [value]="modelo.nombre">{{modelo.nombre}}</option>
                             </select>
                         </div>
 
                         <div class="col-md-3 col-sm-12">
-                            <select class="form-select" name="anio" [(ngModel)]="anioSeleccionado">
-                                <option selected hidden>Año</option>
+                            <select class="form-select" formControlName="anio">
+                                <option selected hidden value="">Año<option>
                                 <option *ngFor="let anio of listaAnio" [value]="anio">{{anio}}</option>
                             </select>
                         </div>
@@ -63,39 +63,39 @@
 
                     <h4>¿Es de uso particular?</h4>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" [value]="true" name="particular" [(ngModel)]="datosVehiculo.particular">
+                        <input class="form-check-input" type="radio" [value]="true" formControlName="particular">
                         <label class="form-check-label">Si</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" [value]="false" name="particular" [(ngModel)]="datosVehiculo.particular">
+                        <input class="form-check-input" type="radio" [value]="false" formControlName="particular">
                         <label class="form-check-label">No</label>
                     </div>
 
 
                     <h4>¿Tiene alarma?</h4>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" [value]="true" name="alarma" [(ngModel)]="datosVehiculo.alarma">
+                        <input class="form-check-input" type="radio" [value]="true" formControlName="alarma">
                         <label class="form-check-label">Si</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" [value]="false" name="alarma" [(ngModel)]="datosVehiculo.alarma">
+                        <input class="form-check-input" type="radio" [value]="false" formControlName="alarma">
                         <label class="form-check-label">No</label>
                     </div>
 
                     <h4>¿Se guarda en garage?</h4>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" [value]="true" name="garage" [(ngModel)]="datosVehiculo.garaje">
+                        <input class="form-check-input" type="radio" [value]="true" formControlName="garaje">
                         <label class="form-check-label">Si</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" [value]="false" name="garage" [(ngModel)]="datosVehiculo.garaje">
+                        <input class="form-check-input" type="radio" [value]="false" formControlName="garaje">
                         <label class="form-check-label">No</label>
                     </div>
 
                     <div class="col-4">
                         <h4>¿Cuántos KMS manejás al año?</h4> 
-                        <select class="form-select" name="interavaloKilometros" [(ngModel)]="datosVehiculo.intervaloKilometros">
-                            <option selected hidden value="0">KMS manejados</option>
+                        <select class="form-select" formControlName="intervaloKilometros">
+                            <option selected hidden value="">KMS manejados</option>
                             <option *ngFor="let kms of listaIntervaloKilometros" [value]="kms">{{kms | stringSinUnderscore}}</option>
                         </select>
                     </div>
@@ -114,8 +114,8 @@
 
                     <div class="col-4">
                         <h4>Tipo de Seguro</h4> 
-                        <select class="form-select" name="tipoSeguro" [(ngModel)]="datosVehiculo.tipoSeguro">
-                            <option selected hidden value="0">Tipo de seguro</option>
+                        <select class="form-select" formControlName="tipoSeguro">
+                            <option selected hidden value="">Tipo de seguro</option>
                             <option *ngFor="let seguro of listaTipoSeguro" [value]="seguro">{{seguro | stringSinUnderscore}}</option>
                         </select>
                     </div>
@@ -123,19 +123,19 @@
                     <div class="col-4">
 
                         <h4>Edad</h4> 
-                        <select class="form-select" name="intervaloEdad" [(ngModel)]="datosVehiculo.intervaloEdad">
-                            <option selected hidden value="0">Edad</option>
+                        <select class="form-select" formControlName="intervaloEdad">
+                            <option selected hidden value="">Edad</option>
                             <option *ngFor="let edad of listaIntervaloEdad" [value]="edad">{{edad | stringSinUnderscore}}</option>
                         </select>
                     </div>
                     
                     <h4>Además de usted, ¿maneja el auto un menor de 25 años?</h4>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" [value]="true" name="hijos" [(ngModel)]="datosVehiculo.hijos">
+                        <input class="form-check-input" type="radio" [value]="true" formControlName="hijos">
                         <label class="form-check-label">Si</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" [value]="false" name="hijos" [(ngModel)]="datosVehiculo.hijos">
+                        <input class="form-check-input" type="radio" [value]="false" formControlName="hijos">
                         <label class="form-check-label">No</label>
                     </div>
                 </div>
@@ -154,23 +154,24 @@
                         <div class="col-md-4 col-sm-12">
                             <div class="row">
                                 <label class="col-4">Nombre</label>
-                                <div class="col-8" *ngIf="nombre.invalid && nombre.touched || submited">
-                                    <span *ngIf="nombre.errors" class="invalid-validator">Ingrese su nombre</span>
+                                <div class="col-8" *ngIf="nombre?.invalid && nombre?.touched || submited">
+                                    <span *ngIf="nombre?.errors" class="invalid-validator">Ingrese su nombre</span>
 
                                 </div>
                             </div>
-
-                            <input type="text" class="form-control" name="nombre" [formControl]="nombre">
+                            <input type="text" class="form-control" formControlName="nombre"
+                            [ngClass]="{'is-invalid': cuil?.errors && submited }">
                         </div>
 
                         <div class="col-md-4 col-sm-12">
                             <div class="row">
                                 <label class="col-4">Apellido</label>
-                                <div class="col-8" *ngIf="(apellido.invalid && apellido.touched) || submited">
-                                    <div *ngIf="apellido.errors" class="invalid-validator">Ingrese su apellido</div>
+                                <div class="col-8" *ngIf="(apellido?.invalid && apellido?.touched) || submited">
+                                    <div *ngIf="apellido?.errors" class="invalid-validator">Ingrese su apellido</div>
                                 </div>
                             </div>
-                            <input type="text" class="form-control" name="apellido" [ngClass]="{'is-invalid': apellido.errors && submited }" [(ngModel)]="cliente.apellido" [formControl]="apellido">
+                            <input type="text" class="form-control" formControlName="apellido" 
+                            [ngClass]="{'is-invalid': apellido?.errors && submited }" >
                         </div>
                     </div>
                 </div>
@@ -180,33 +181,34 @@
                         <div class="col-md-4 col-sm-12">
                             <div class="row">
                                 <label class="col-4">CUIT/CUIL</label>
-                                <div class="col-8" *ngIf="(cuil.invalid && cuil.touched) || submited">
-                                    <div *ngIf="cuil.errors" class="invalid-validator">Ingrese su cuil o cuit</div>
+                                <div class="col-8" *ngIf="(cuil?.invalid && cuil?.touched) || submited">
+                                    <div *ngIf="cuil?.errors" class="invalid-validator">Ingrese su cuil o cuit</div>
                                 </div>
                             </div>
-                            <input type="number" class="form-control" name="cuil" [ngClass]="{'is-invalid': cuil.errors && submited }" [(ngModel)]="cliente.cuil" [formControl]="cuil">
+                            <input type="number" class="form-control" formControlName="cuil"
+                            [ngClass]="{'is-invalid': cuil?.errors && submited }">
                         </div>
 
                         <div class="col-md-4 col-sm-12">
                             <div class="row">
-                                <label class="col-7">Fecha de Nacimiento</label>
-                                <div class="col-8" *ngIf="fechaNacimiento.invalid && submited">
-                                    <div *ngIf="fechaNacimiento.errors" class="invalid-validator">Ingrese su fecha de nacimiento</div>
+                                <label class="col-6">Fecha de Nacimiento</label>
+                                <div class="col-6" *ngIf="fechaNacimiento?.invalid && submited">
+                                    <div *ngIf="fechaNacimiento?.errors" class="invalid-validator">Ingrese su fecha de nac.</div>
                                 </div>
                             </div>
-                            <input type="date" class="form-control" name="fechaNacimiento" [(ngModel)]="cliente.fechaNacimiento">
+                            <input type="date" class="form-control" formControlName="fechaNacimiento"
+                            [ngClass]="{'is-invalid': fechaNacimiento?.errors && submited }">
                         </div>
 
                         <div class="col-md-4 col-sm-12">
-                            <div class="row">
-                                {{sexo.invalid}}{{sexo.touched}}{{sexo.errors}}
-                                
+                            <div class="row">                                
                                 <label class="col-4">Sexo</label>
-                                <div class="col-8" *ngIf="(sexo.invalid && sexo.touched) || submited">
-                                    <div *ngIf="sexo.errors" class="invalid-validator">Ingrese su sexo</div>
+                                <div class="col-8" *ngIf="(sexo?.invalid && sexo?.touched) || submited">
+                                    <div *ngIf="sexo?.errors" class="invalid-validator">Ingrese su sexo</div>
                                 </div>
                             </div>  
-                            <select class="form-select" name="sexo" [(ngModel)]="cliente.sexo" [formControl]="sexo">
+                            <select class="form-select" formControlName="sexo"
+                            [ngClass]="{'is-invalid': sexo?.errors && submited }">
                                 <option selected value="">Sexo</option>
                                 <option *ngFor="let sexo of listaSexo" [value]="sexo">{{sexo}}</option>
                             </select>
@@ -219,29 +221,32 @@
                         <div class="col-md-4 col-sm-12">
                             <div class="row">
                                 <label class="col-4">Ciudad</label>
-                                <div class="col-8" *ngIf="(ciudad.invalid && ciudad.touched) || submited">
-                                    <div *ngIf="ciudad.errors" class="invalid-validator">Ingrese su ciudad</div>
+                                <div class="col-8" *ngIf="(ciudad?.invalid && ciudad?.touched) || submited">
+                                    <div *ngIf="ciudad?.errors" class="invalid-validator">Ingrese su ciudad</div>
                                 </div>
                             </div>
-                            <input type="text" class="form-control" name="ciudad" [(ngModel)]="cliente.ciudad" [formControl]="ciudad">
+                            <input type="text" class="form-control" formControlName="ciudad"
+                            [ngClass]="{'is-invalid': ciudad?.errors && submited }">
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <div class="row">
                                 <label class="col-4">Provincia</label>
-                                <div class="col-8" *ngIf="(provincia.invalid && provincia.touched) || submited">
-                                    <div *ngIf="provincia.errors" class="invalid-validator">Ingrese su provincia</div>
+                                <div class="col-8" *ngIf="(provincia?.invalid && provincia?.touched) || submited">
+                                    <div *ngIf="provincia?.errors" class="invalid-validator">Ingrese su provincia</div>
                                 </div>
                             </div>
-                            <input type="text" class="form-control" name="provincia" [(ngModel)]="cliente.provincia" [formControl]="provincia">
+                            <input type="text" class="form-control" formControlName="provincia"
+                            [ngClass]="{'is-invalid': provincia?.errors && submited }">
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <div class="row">
                                 <label class="col-4">Codigo Postal</label>
-                                <div class="col-8" *ngIf="(codigoPostal.invalid && codigoPostal.touched) || submited">
-                                    <div *ngIf="codigoPostal.errors" class="invalid-validator">Ingrese su codigo postal</div>
+                                <div class="col-8" *ngIf="(codigoPostal?.invalid && codigoPostal?.touched) || submited">
+                                    <div *ngIf="codigoPostal?.errors" class="invalid-validator">Ingrese su codigo postal</div>
                                 </div>
                             </div>
-                            <input type="number" class="form-control" name="codigoPostal" [(ngModel)]="cliente.codigoPostal" [formControl]="codigoPostal">
+                            <input type="number" class="form-control" formControlName="codigoPostal"
+                            [ngClass]="{'is-invalid': codigoPostal?.errors && submited }">
                         </div>
                     </div>
                 </div>
@@ -251,24 +256,28 @@
                         <div class="col-md-4 col-sm-12">
                             <div class="row">
                                 <label class="col-4">E-mail</label>
-                                <div class="col-8" *ngIf="(email.invalid && email.touched) || submited">
-                                    <div *ngIf="email.errors" class="invalid-validator">Ingrese su e-mail</div>
+                                <div class="col-8" *ngIf="(email?.invalid && email?.touched) || submited">
+                                    <div *ngIf="email?.errors" class="invalid-validator">Ingrese su e-mail</div>
                                 </div>
                             </div>
-                            <input type="email" class="form-control" name="email" [(ngModel)]="cliente.email" [formControl]="email">
+                            <input type="email" class="form-control" formControlName="email"
+                            [ngClass]="{'is-invalid': email?.errors && submited }">
                         </div>
+
                         <div class="col-md-4 col-sm-12">
                             <div class="row">
                                 <label class="col-4">Celular</label>
-                                <div class="col-8" *ngIf="(celular.invalid && celular.touched) || submited">
-                                    <div *ngIf="celular.errors" class="invalid-validator">Ingrese su celular</div>
+                                <div class="col-8" *ngIf="(celular?.invalid && celular?.touched) || submited">
+                                    <div *ngIf="celular?.errors" class="invalid-validator">Ingrese su celular</div>
                                 </div>
                             </div>
-                            <input type="text" class="form-control" name="celular" [(ngModel)]="cliente.celular" [formControl]="celular">
+                            <input type="number" class="form-control" formControlName="celular"
+                            [ngClass]="{'is-invalid': celular?.errors && submited }">
                         </div>
+
                         <div class="col-md-4 col-sm-12">
                             <label>Nombre de la empresa (Opcional)</label>
-                            <input type="text" class="form-control" name="empresa" [(ngModel)]="cliente.empresa">
+                            <input type="text" class="form-control" formControlName="empresa">
                         </div>
                     </div>
                 </div>

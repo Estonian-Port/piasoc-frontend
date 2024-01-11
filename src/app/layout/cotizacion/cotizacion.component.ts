@@ -23,16 +23,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class CotizacionComponent implements OnInit {
 
   listaTipoVehiculo: string[] = []
-  tipoVehiculoSeleccionado: string = "Tipo Vehiculo"
-
   listaMarca: Array<Marca> = []
-  marcaSeleccionada: string = "Marca"
-
   listaModelo: Array<Modelo> = []
-  modeloSeleccionado: string = "Modelo"
-
   listaAnio: number[] = []
-  anioSeleccionado: any = "Año"
 
   listaSexo: string[] = []
   listaIntervaloEdad: string[] = []
@@ -54,27 +47,74 @@ export class CotizacionComponent implements OnInit {
   botonSiguienteFinalizado : string = "Siguiente"
   botonAtrasDisabled = true
 
+  formGroup!: FormGroup
+  submited : Boolean = false
+
   @ViewChild(ModalComponent) 
   modal!: ModalComponent;
 
-  //formGroup = new FormGroup({
-    nombre = new FormControl('', [Validators.required, Validators.minLength(3)])
-    apellido = new FormControl('', [Validators.required, Validators.minLength(3)])
-    cuil = new FormControl('', [Validators.required, Validators.min(999999999)])
-    email = new FormControl('', [Validators.required, Validators.email])
-    ciudad = new FormControl('', [Validators.required, Validators.minLength(3)])
-    provincia = new FormControl('', [Validators.required, Validators.minLength(3)])
-    codigoPostal = new FormControl('', [Validators.required, Validators.min(999)])
-    celular = new FormControl('', [Validators.required, Validators.min(999999999)])
-    sexo = new FormControl('', [Validators.required, Validators.minLength(4)])
-    //})
-
-  submited : Boolean = false
-
   constructor(public tipoVehiculoService : TipoVehiculoService, public marcaService : MarcaService, 
     public modeloService : ModeloService, public router : Router, public clienteService : ClienteService,
-    public datosVehiculoService : DatosVehiculoService, public cotizacionService : CotizacionService) { }
+    public datosVehiculoService : DatosVehiculoService, public cotizacionService : CotizacionService,
+    private formBuilder: FormBuilder) {
 
+      this.formGroup = this.formBuilder.group({
+        tipoVehiculo: new FormControl('', [Validators.required]),
+        marca: new FormControl('', [Validators.required]),
+        modelo: new FormControl('', [Validators.required]),
+        anio: new FormControl('', [Validators.required]),
+
+        particular: new FormControl('', [Validators.required]),
+        alarma: new FormControl('', [Validators.required]),
+        garaje: new FormControl('', [Validators.required]),
+        hijos: new FormControl('', [Validators.required]),
+
+        intervaloKilometros: new FormControl('', [Validators.required]),
+        intervaloEdad: new FormControl('', [Validators.required]),
+        tipoSeguro: new FormControl('', [Validators.required]),
+
+        nombre: new FormControl('', [Validators.required, Validators.minLength(3)]),
+        apellido: new FormControl('', [Validators.required, Validators.minLength(3)]),
+        cuil: new FormControl('', [Validators.required, Validators.min(999999999)]),
+        email: new FormControl('', [Validators.required, Validators.email]),
+        ciudad: new FormControl('', [Validators.required, Validators.minLength(3)]),
+        provincia: new FormControl('', [Validators.required, Validators.minLength(3)]),
+        codigoPostal: new FormControl('', [Validators.required, Validators.min(999)]),
+        celular: new FormControl('', [Validators.required, Validators.min(999999999)]),
+        sexo: new FormControl('', [Validators.required]),
+        fechaNacimiento: new FormControl('', [Validators.required]),
+        empresa: new FormControl('', [Validators.required])
+
+      })
+
+  }
+
+  get tipoVehiculo(){ return this.formGroup.get("tipoVehiculo") }
+  get marca(){ return this.formGroup.get("marca") }
+  get modelo(){ return this.formGroup.get("modelo") }
+  get anio(){ return this.formGroup.get("anio") }
+
+  get particular(){ return this.formGroup.get("anio") }
+  get alarma(){ return this.formGroup.get("anio") }
+  get garaje(){ return this.formGroup.get("anio") }
+  get hijos(){ return this.formGroup.get("anio") }
+
+  get intervaloKilometros(){ return this.formGroup.get("anio") }
+  get intervaloEdad(){ return this.formGroup.get("anio") }
+  get tipoSeguro(){ return this.formGroup.get("anio") }
+
+  get nombre(){ return this.formGroup.get("nombre") }
+  get apellido(){ return this.formGroup.get("apellido") }
+  get cuil(){ return this.formGroup.get("cuil") }
+  get email(){ return this.formGroup.get("email") }
+  get ciudad(){ return this.formGroup.get("ciudad") }
+  get provincia(){ return this.formGroup.get("provincia") }
+  get codigoPostal(){ return this.formGroup.get("codigoPostal") }
+  get celular(){ return this.formGroup.get("celular") }
+  get sexo(){ return this.formGroup.get("sexo") }
+  get fechaNacimiento(){ return this.formGroup.get("fechaNacimiento") }
+
+  
   async ngOnInit(): Promise<void> {
 
     this.listaTipoVehiculo = await this.tipoVehiculoService.getAllTipoVehiculo()
@@ -92,27 +132,26 @@ export class CotizacionComponent implements OnInit {
 
   cleanMarca(){
     this.listaMarca = []
-    this.marcaSeleccionada = "Marca"
+    this.formGroup.get('marca')?.setValue("")
   }
 
   cleanModelo(){
     this.listaModelo = []
-    this.modeloSeleccionado = "Modelo"
+    this.formGroup.get('modelo')?.setValue("")
+
   }
 
   async getListaMarcaByTipoVehiculo(){
     this.cleanMarca()
     this.cleanModelo()
 
-    this.listaMarca = await this.marcaService.getAllByTipoVehiculo(this.tipoVehiculoSeleccionado)
+    this.listaMarca = await this.marcaService.getAllByTipoVehiculo(this.formGroup.get('tipoVehiculo')?.value)
   }
 
   async getAllByMarcaAndTipoVehiculo(){
     this.cleanModelo()
-    this.listaModelo = await this.modeloService.getAllByMarcaAndTipoVehiculo(this.tipoVehiculoSeleccionado, this.marcaSeleccionada)
+    this.listaModelo = await this.modeloService.getAllByMarcaAndTipoVehiculo(this.formGroup.get('tipoVehiculo')?.value, this.formGroup.get('marca')?.value)
   }
-
-
 
   //-------------- Stepper ----------------------
   
@@ -163,7 +202,7 @@ export class CotizacionComponent implements OnInit {
     if(false){
       this.modal.mostrarModal()
 
-      this.datosVehiculo.modelo = this.modeloSeleccionado
+      this.datosVehiculo.modelo = this.formGroup.get('modelo')?.value
 
       try{
         var a = await this.cotizacionService.save(this.cotizacionDto)
