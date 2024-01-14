@@ -11,13 +11,26 @@
 }
 
 :root {
-    --color-primario: white;
-    --color-secundario: lightgray;
-    --color-terciario: black;
-    --espacio-separacion: 0.5rem;
-    --sombra: 0 0.35rem 0.35rem var(--color-terciario);
-  }
-  
-  html {
-    font-size: 12px;
-  }
+  --colorPrincipal: #034471;
+  --colorSecundario: #5ba6d4;
+  --colorTerciario: #73CBF3;
+  --colorTexto: #444443;
+}
+
+ul{
+  list-style: none; 
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+.btn-primary{
+  background-color: var(--colorPrincipal)
+}
+
+.btn-primary:hover{
+  border-color: var(--colorSecundario);
+  background-color: var(--colorSecundario);
+}

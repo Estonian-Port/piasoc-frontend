@@ -1,0 +1,346 @@
+<div class="cotizacion">
+
+    <div class="row justify-content-evenly hide-on-phone">
+        <div *ngFor="let stepBox of listaStepBox" class="col-md-2">
+            <app-step-box 
+                [stepBox]="stepBox" 
+                [currentStep]="step"
+                (outputStep)="stepBoxSelected($event)">
+            </app-step-box>
+        </div>
+    </div>
+    
+    <form class="cotizacion-form" [formGroup]="formGroup">
+
+        <!-- SECTION 1 -->
+        <div [ngStyle]="{'display': (isStep(1)) ? 'block' : 'none' }">
+            <section class="nuevo-evento-step">
+                <div class="container" formGroupName="datosVehiculoDto">
+                    <h2>Seleccionar vehiculo</h2>
+            
+                    <div class="row mt-3">
+                        <div class="col-md-3 col-sm-12 mb-4">
+                            <div class="label-with-error">
+                                <label>Tipo de vehiculo</label>
+                                <div *ngIf="(tipoVehiculo?.invalid && tipoVehiculo?.touched) || submited">
+                                    <span *ngIf="tipoVehiculo?.errors" class="invalid-validator">Seleccione el tipo</span>
+                                </div>
+                            </div>
+
+                            <select class="form-select" formControlName="tipoVehiculo" (change)="getListaMarcaByTipoVehiculo()"
+                            [ngClass]="{'is-invalid': tipoVehiculo?.errors && submited }">
+                                <option selected hidden value="">Seleccione</option>
+                                <option *ngFor="let tipoVehiculo of listaTipoVehiculo" [value]="tipoVehiculo">{{tipoVehiculo}}</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-3 col-sm-12 mb-4">
+                            <div class="label-with-error">
+                                <label>Marca</label>
+                                <div *ngIf="(marca?.invalid && marca?.touched) || submited">
+                                    <span *ngIf="marca?.errors" class="invalid-validator">Seleccione su marca</span>
+                                </div>
+                            </div>
+
+                            <select class="form-select" formControlName="marca" (change)="getAllByMarcaAndTipoVehiculo()"
+                            [ngClass]="{'is-invalid': marca?.errors && submited }">
+                                <option selected hidden value="">Seleccione</option>
+                                <option *ngFor="let marca of listaMarca" [value]="marca.nombre">{{marca.nombre}}</option>
+                            </select>
+                        </div>
+
+                        
+                        <div class="col-md-3 col-sm-12 mb-4">
+                            <div class="label-with-error">
+                                <label>Modelo</label>
+                                <div *ngIf="(modelo?.invalid && modelo?.touched) || submited">
+                                    <span *ngIf="modelo?.errors" class="invalid-validator">Seleccione su modelo</span>
+                                </div>
+                            </div>
+
+                            <select class="form-select" formControlName="modelo"
+                                [ngClass]="{'is-invalid': modelo?.errors && submited }">
+                                <option selected hidden value="">Seleccione</option>
+                                <option *ngFor="let modelo of listaModelo" [value]="modelo.nombre">{{modelo.nombre}}</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3 col-sm-12">
+                            <div class="label-with-error">
+                                <label>Año</label>
+                                <div *ngIf="(anio?.invalid && anio?.touched) || submited">
+                                    <span *ngIf="anio?.errors" class="invalid-validator">Seleccione el año</span>
+                                </div>
+                            </div>
+
+                            <select class="form-select" formControlName="anio"
+                            [ngClass]="{'is-invalid': modelo?.errors && submited }">
+                                <option selected hidden value="">Seleccione<option>
+                                <option *ngFor="let anio of listaAnio" [value]="anio">{{anio}}</option>
+                            </select>
+                        </div>
+                    </div>
+                <!-- checkbox "No encuentro mi vehiculo" y que cambie los select 
+                por inputs -->
+                </div>
+            </section>
+        </div>
+
+        <!-- SECTION 2 -->
+        <div [ngStyle]="{'display': (isStep(2)) ? 'block' : 'none' }">
+
+            <section class="nuevo-evento-step">
+                <div class="container" formGroupName="datosVehiculoDto">
+
+                    <h2>Datos del vehiculo</h2> 
+
+                    <div class="mt-2 col-md-4 col-sm-12">
+                        <h5>¿Es de uso particular?</h5>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [value]="true" formControlName="particular">
+                            <label class="form-check-label">Si</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [value]="false" formControlName="particular">
+                            <label class="form-check-label">No</label>
+                        </div>
+                    </div>
+
+                    <div class="mt-2 col-md-4 col-sm-12">
+                        <h5>¿Tiene alarma?</h5>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [value]="true" formControlName="alarma">
+                            <label class="form-check-label">Si</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [value]="false" formControlName="alarma">
+                            <label class="form-check-label">No</label>
+                        </div>
+                    </div>
+
+                    <div class="mt-2 col-md-4 col-sm-12">
+                        <h5>¿Se guarda en garage?</h5>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [value]="true" formControlName="garaje">
+                            <label class="form-check-label">Si</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [value]="false" formControlName="garaje">
+                            <label class="form-check-label">No</label>
+                        </div>
+                    </div>
+
+                    <div class="mt-2 col-md-4 col-sm-12">
+                        <h5>¿Cuántos KMS manejás al año?</h5> 
+                        <select class="form-select" formControlName="intervaloKilometros"
+                        [ngClass]="{'is-invalid': intervaloKilometros?.errors && submited }">
+                            <option selected hidden value="">Seleccione</option>
+                            <option *ngFor="let kms of listaIntervaloKilometros" [value]="kms">{{kms | stringSinUnderscore}}</option>
+                        </select>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+
+
+        <!-- SECTION 3 -->
+        <div [ngStyle]="{'display': (isStep(3)) ? 'block' : 'none' }">
+            <section class="nuevo-evento-step">
+                <div class="container" formGroupName="datosVehiculoDto">
+
+                    <h2>Datos del seguro</h2> 
+
+                    <div class="mt-2 col-md-4 col-sm-12">
+                        <div class="label-with-error">
+                            <h5>Tipo de Seguro</h5>
+                            <div *ngIf="(tipoSeguro?.invalid && tipoSeguro?.touched) || submited">
+                                <span *ngIf="tipoSeguro?.errors" class="invalid-validator">Seleccione su seguro</span>
+                            </div>
+                        </div>
+                        
+                        <select class="form-select" formControlName="tipoSeguro"
+                        [ngClass]="{'is-invalid': tipoSeguro?.errors && submited }">
+                            <option selected hidden value="">Seleccione</option>
+                            <option *ngFor="let seguro of listaTipoSeguro" [value]="seguro">{{seguro | stringSinUnderscore}}</option>
+                        </select>
+                    </div>
+
+                    <div class="mt-2 col-md-4 col-sm-12">
+                        <div class="label-with-error">
+                            <h5>Edad</h5>
+                            <div *ngIf="(intervaloEdad?.invalid && intervaloEdad?.touched) || submited">
+                                <span *ngIf="intervaloEdad?.errors" class="invalid-validator">Seleccione su edad</span>
+                            </div>
+                        </div>
+                        <select class="form-select" formControlName="intervaloEdad"
+                        [ngClass]="{'is-invalid': intervaloEdad?.errors && submited }">
+                            <option selected hidden value="">Seleccione</option>
+                            <option *ngFor="let edad of listaIntervaloEdad" [value]="edad">{{edad | stringSinUnderscore}}</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mt-3 col-md-4 col-sm-12">
+                        <h5>Además de usted, ¿maneja el auto un menor de 25 años?</h5>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [value]="true" formControlName="hijos">
+                            <label class="form-check-label">Si</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [value]="false" formControlName="hijos">
+                            <label class="form-check-label">No</label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SECTION 4 -->
+        <div [ngStyle]="{'display': (isStep(4)) ? 'block' : 'none' }">
+            <section class="nuevo-evento-step" formGroupName="cliente">
+                <div class="container">
+
+                    <h2>Datos de contacto</h2> 
+
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12">
+                            <div class="label-with-error">
+                                <label>Nombre</label>
+                                <div *ngIf="nombre?.invalid && nombre?.touched || submited">
+                                    <span *ngIf="nombre?.errors" class="invalid-validator">Ingrese su nombre</span>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" formControlName="nombre"
+                            [ngClass]="{'is-invalid': nombre?.errors && submited }">
+                        </div>
+
+                        <div class="col-md-4 col-sm-12">
+                            <div class="label-with-error">
+                                <label>Apellido</label>
+                                <div *ngIf="(apellido?.invalid && apellido?.touched) || submited">
+                                    <span *ngIf="apellido?.errors" class="invalid-validator">Ingrese su apellido</span>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" formControlName="apellido" 
+                            [ngClass]="{'is-invalid': apellido?.errors && submited }" >
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="container mt-3">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12">
+                            <div class="label-with-error">
+                                <label>CUIT/CUIL</label>
+                                <div *ngIf="(cuil?.invalid && cuil?.touched) || submited">
+                                    <span *ngIf="cuil?.errors" class="invalid-validator">Ingrese su cuil o cuit</span>
+                                </div>
+                            </div>
+                            <input type="number" class="form-control" formControlName="cuil"
+                            [ngClass]="{'is-invalid': cuil?.errors && submited }">
+                        </div>
+
+                        <div class="col-md-4 col-sm-12">
+                            <div class="label-with-error">
+                                <label>Fecha de Nacimiento</label>
+                                <div *ngIf="fechaNacimiento?.invalid && submited">
+                                    <span *ngIf="fechaNacimiento?.errors" class="invalid-validator">Ingrese su fecha de nac.</span>
+                                </div>
+                            </div>
+                            <input type="date" class="form-control" formControlName="fechaNacimiento"
+                            [ngClass]="{'is-invalid': fechaNacimiento?.errors && submited }">
+                        </div>
+
+                        <div class="col-md-4 col-sm-12">
+                            <div class="label-with-error">
+                                <label>Sexo</label>
+                                <div *ngIf="(sexo?.invalid && sexo?.touched) || submited">
+                                    <span *ngIf="sexo?.errors" class="invalid-validator">Ingrese su sexo</span>
+                                </div>
+                            </div>  
+                            <select class="form-select" formControlName="sexo"
+                            [ngClass]="{'is-invalid': sexo?.errors && submited }">
+                                <option selected value="">Seleccione</option>
+                                <option *ngFor="let sexo of listaSexo" [value]="sexo">{{sexo}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container mt-3">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12">
+                            <div class="label-with-error">
+                                <label>Ciudad</label>
+                                <div *ngIf="(ciudad?.invalid && ciudad?.touched) || submited">
+                                    <span *ngIf="ciudad?.errors" class="invalid-validator">Ingrese su ciudad</span>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" formControlName="ciudad"
+                            [ngClass]="{'is-invalid': ciudad?.errors && submited }">
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="label-with-error">
+                                <label>Provincia</label>
+                                <div *ngIf="(provincia?.invalid && provincia?.touched) || submited">
+                                    <span *ngIf="provincia?.errors" class="invalid-validator">Ingrese su provincia</span>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" formControlName="provincia"
+                            [ngClass]="{'is-invalid': provincia?.errors && submited }">
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="label-with-error">
+                                <label>Codigo Postal</label>
+                                <div *ngIf="(codigoPostal?.invalid && codigoPostal?.touched) || submited">
+                                    <span *ngIf="codigoPostal?.errors" class="invalid-validator">Ingrese su codigo postal</span>
+                                </div>
+                            </div>
+                            <input type="number" class="form-control" formControlName="codigoPostal"
+                            [ngClass]="{'is-invalid': codigoPostal?.errors && submited }">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container mt-3">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12">
+                            <div class="label-with-error">
+                                <label>E-mail</label>
+                                <div *ngIf="(email?.invalid && email?.touched) || submited">
+                                    <span *ngIf="email?.errors" class="invalid-validator">Ingrese su e-mail</span>
+                                </div>
+                            </div>
+                            <input type="email" class="form-control" formControlName="email"
+                            [ngClass]="{'is-invalid': email?.errors && submited }">
+                        </div>
+
+                        <div class="col-md-4 col-sm-12">
+                            <div class="label-with-error">
+                                <label>Celular</label>
+                                <div *ngIf="(celular?.invalid && celular?.touched) || submited">
+                                    <span *ngIf="celular?.errors" class="invalid-validator">Ingrese su celular</span>
+                                </div>
+                            </div>
+                            <input type="number" class="form-control" formControlName="celular"
+                            [ngClass]="{'is-invalid': celular?.errors && submited }">
+                        </div>
+
+                        <div class="col-md-4 col-sm-12">
+                            <label>Nombre de la empresa (Opcional)</label>
+                            <input type="text" class="form-control" formControlName="empresa">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="botones-nuevo-evento">
+            <button (click)="atras()" [disabled]="botonAtrasDisabled" type="button" [ngClass]="botonAtrasDisabled ? 'btn btn-secondary' : 'btn btn-primary'" class="mx-2">Atras</button>
+            <button (click)="siguiente()" type="button" class="btn btn-primary">{{botonSiguienteFinalizado}}</button>
+        </div>
+
+    </form>
+</div>
+
+<app-modal [cliente]="cliente"></app-modal>

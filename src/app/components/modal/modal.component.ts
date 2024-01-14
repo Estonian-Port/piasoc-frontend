@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Usuario } from 'src/app/model/Usuario';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { Cliente } from 'src/app/model/Cliente';
 
 @Component({
   selector: 'app-modal',
@@ -9,63 +9,26 @@ import { Usuario } from 'src/app/model/Usuario';
 })
 export class ModalComponent implements OnInit {
 
- formMonto: FormGroup
 
-  constructor(private miFormBuild:FormBuilder) {
-    this.formMonto=this.miFormBuild.group({
-      monto :['', [Validators.min(0)]],
-    })
-  }
+  constructor(public router : Router) {}
+
+  @ViewChild('modal') 
+  modal!: ElementRef;
 
   @Input()
-  modal = false
-
-  @Input()
-  modalAmigos = false
-
-  @Input()
-  modalCredito = false
-
-  @Input()
-  usuario : Usuario = new Usuario(0,"","","",0,"",0)
-
-  @Input()
-  listaUsuarios! : Usuario[]
-  
-  @Input()
-  titulo = ""
-  
-  @Input()
-  cuerpo = ""
-  
-  @Input()
-  boton = ""
-
-  monto: any | undefined
+  cliente! : Cliente
 
   @Output() 
   outputAceptar = new EventEmitter<number>();
 
-  @Output() 
-  outputChangeModal = new EventEmitter<boolean>();
-
-
   ngOnInit(): void {
   }
 
-  changeModal(){
-    this.modal = false
-    this.modalAmigos = false
-    this.modalCredito = false
-    this.outputChangeModal.emit(this.modal)
-    this.monto = 0
+  mostrarModal(){
+    this.modal.nativeElement.click();
   }
 
-  aceptar(){
-    if (this.formMonto.valid){
-    this.outputAceptar.emit(this.monto);
-    this.changeModal()
-    }
+  volverHome() {
+    this.router.navigateByUrl('/')
   }
-
 }
