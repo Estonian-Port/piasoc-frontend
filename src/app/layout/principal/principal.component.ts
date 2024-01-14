@@ -16,4 +16,8 @@ export class PrincipalComponent implements OnInit {
     this.router.navigateByUrl('/cotizacion')
   }
 
+  seguros() {
+    this.router.navigateByUrl('/seguros')
+  }
+
 }
