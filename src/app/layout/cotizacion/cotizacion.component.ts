@@ -198,15 +198,10 @@ export class CotizacionComponent implements OnInit {
 
     this.submited = true
 
-    console.log(this.formGroup.valid)
-
-    console.log(new CotizacionDTO(this.formGroup.value))
     if(this.formGroup.valid){
 
       try{
         var response = await this.cotizacionService.save(new CotizacionDTO(this.formGroup.value))
-        console.log(response)
-
         this.modal.mostrarModal()
       }catch(error){
 
