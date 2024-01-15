@@ -21,4 +21,7 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('/cotizacion')
   }
 
+  home() {
+    this.router.navigateByUrl('/')
+  }
 }
