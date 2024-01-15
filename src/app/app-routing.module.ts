@@ -11,16 +11,16 @@ const routes: Routes = [
     component: PrincipalComponent
   },
   {
-    path: 'detalle/:id',
-    component: PrincipalComponent
-  },
-  {
     path: 'seguros',
     component: SegurosComponent
   },
   {
     path: 'cotizacion',
     component: CotizacionComponent
+  },
+  { 
+    path: '**', 
+    component: PrincipalComponent 
   }
 ]
 
