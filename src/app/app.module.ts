@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StepBoxComponent } from './components/step-box/step-box.component';
 import { StringSinUnderscorePipe } from './pipes/string-sin-underscore.pipe';
 import { ModalComponent } from './components/modal/modal.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ModalComponent } from './components/modal/modal.component';
     NavbarComponent,
     StepBoxComponent,
     ModalComponent,
-    StringSinUnderscorePipe
+    StringSinUnderscorePipe,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

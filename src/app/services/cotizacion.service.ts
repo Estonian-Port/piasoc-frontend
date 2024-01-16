@@ -15,7 +15,7 @@ export class CotizacionService {
 
 
   async save(cotizacion : CotizacionDTO) {
-    const item$ = this.httpClient.post<String>(REST_SERVER_URL + COTIZACION + '/save', cotizacion.toJSON())
+    const item$ = this.httpClient.post<number>(REST_SERVER_URL + COTIZACION + '/save', cotizacion.toJSON())
     return await lastValueFrom(item$)
   }
 }

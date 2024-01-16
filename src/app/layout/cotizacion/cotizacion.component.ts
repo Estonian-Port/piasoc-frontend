@@ -51,6 +51,8 @@ export class CotizacionComponent implements OnInit {
   @ViewChild(ModalComponent) 
   modal!: ModalComponent;
 
+  spinnerVisible = false
+
   constructor(public tipoVehiculoService : TipoVehiculoService, public marcaService : MarcaService, 
     public modeloService : ModeloService, public router : Router, public clienteService : ClienteService,
     public datosVehiculoService : DatosVehiculoService, public cotizacionService : CotizacionService,
@@ -200,10 +202,15 @@ export class CotizacionComponent implements OnInit {
 
     if(this.formGroup.valid){
 
+      this.spinnerVisible = true
+
       try{
-        var response = await this.cotizacionService.save(new CotizacionDTO(this.formGroup.value))
+        let res = await this.cotizacionService.save(new CotizacionDTO(this.formGroup.value))
+        this.cliente = new CotizacionDTO(this.formGroup.value).cliente
         this.modal.mostrarModal()
       }catch(error){
+        console.log(error);
+        this.spinnerVisible = false
 
       }
     }

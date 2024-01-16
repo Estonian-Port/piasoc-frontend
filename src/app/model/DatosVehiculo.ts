@@ -4,6 +4,7 @@ export class DatosVehiculoDTO{
     constructor(
         public id: number,
         public modelo: string,
+        public anio: number,
         public particular : boolean,
         public alarma : boolean,
         public garaje : boolean,

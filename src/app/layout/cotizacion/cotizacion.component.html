@@ -334,6 +334,8 @@
                 </div>
             </section>
         </div>
+        
+        <app-spinner [spinnerVisible]="spinnerVisible"></app-spinner>
 
         <div class="botones-nuevo-evento">
             <button (click)="atras()" [disabled]="botonAtrasDisabled" type="button" [ngClass]="botonAtrasDisabled ? 'btn btn-secondary' : 'btn btn-primary'" class="mx-2">Atras</button>
@@ -344,3 +346,4 @@
 </div>
 
 <app-modal [cliente]="cliente"></app-modal>
+
