@@ -1,1 +1,1 @@
-export const REST_SERVER_URL = 'http://168.197.48.178'
+export const REST_SERVER_URL = 'https://piasoc.bsas.com.ar'
