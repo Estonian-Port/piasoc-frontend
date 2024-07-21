@@ -4,7 +4,7 @@ a{
     letter-spacing: 1px;
 }
 
-#boton-cotizar{
+.boton-cotizar-container{
 	font-size: 36px;
     margin: 30px;
     color: var(--colorPrincipal);
@@ -26,6 +26,14 @@ a{
 }
 
 /**************** SECTION QUIENES SOMOS *****************/
+
+.quienes-somos{
+    margin: 5em;
+}
+
+.quienes-somos-titulo{
+    font-size: 3rem;
+}
 
 .img-quienes-somos{
     width: 25%;
@@ -68,7 +76,7 @@ a{
 
 .companias{
     width: 100%;
-    padding: 70px;
+    padding: 5em;
     text-align: center;
     letter-spacing: 1px;
 }
@@ -106,4 +114,50 @@ a{
     transition: 0.3s;
     cursor: pointer;
     transform: scale(1.1);
+}
+
+
+
+@media only screen and (max-width: 806px) {
+
+    .quienes-somos{
+        margin-top: 2em;
+        margin-bottom: 2em;
+        margin-left: 0em;
+        margin-right: 0em;
+    }
+
+    .quienes-somos-titulo{
+        text-align: center;
+        font-size: 2.5rem;
+    }
+
+    .label-cotizar{
+        margin-bottom: 1.5rem;
+    }
+
+    .img-quienes-somos{
+        display: flex;
+        justify-content: center;
+        width: 70%;
+    }
+
+    .row{
+        justify-content: center;
+    }
+    
+    .descripcion-quienes-somos p{
+        font-size: 20px;
+        margin-top: 1rem;
+        margin-bottom: 3rem;
+        text-align: center;
+    }
+
+    .contenedor-btn-seguros{
+        margin-bottom: 8em;
+    }
+
+    .companias{
+        padding: 2em;
+    }
 }

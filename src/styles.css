@@ -34,3 +34,7 @@ html {
   border-color: var(--colorSecundario);
   background-color: var(--colorSecundario);
 }
+
+.navbar-p {
+  padding-top: 5.5rem;
+}
