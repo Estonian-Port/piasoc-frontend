@@ -1,6 +1,6 @@
 <header>
-    <nav class="navbar navbar-expand-lg navbar navbar-light border-bottom">
-        <a class="logo-header navbar-brand mx-4" (click)="home()">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light border-bottom">
+        <a class="mx-4 logo-header navbar-brand nav-link pointer"  data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" (click)="home()">
             <img class="img-logo" src="./assets/img/prueba3.png"/>
         </a>
         
@@ -10,9 +10,14 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <div class="nav navbar-nav">
-                <a class="py-4 px-5 nav-item nav-link active" (click)="seguros()">Seguros</a>
-                <a class="py-4 px-5 nav-item nav-link active" (click)="cotizacion()">Cotizacion</a>
-                <a href="https://api.whatsapp.com/send?phone=5491135559728" class="py-4 px-5 nav-item nav-link active"><i class="fab fa-whatsapp fa-2x"></i></a>
+                <a class="py-4 px-5 nav-item nav-link pointer" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" (click)="home()">Home</a>
+                <a class="py-4 px-5 nav-item nav-link pointer" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" (click)="quienesSomos()">Quiénes somos</a>
+                <a class="py-4 px-5 nav-item nav-link pointer" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" (click)="companias()">Compañías</a>
+                <a class="py-4 px-5 nav-item nav-link pointer" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" (click)="seguros()">Seguros</a>
+                <a class="py-4 px-5 nav-item nav-link pointer" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" (click)="cotizacion()">Cotizar</a>
+                <a href="https://api.whatsapp.com/send?phone=5491135559728" class="py-4 px-5 nav-item nav-link">
+                    <i class="fab fa-whatsapp fa-2x"></i>
+                </a>
             </div>
         </div>
     </nav>

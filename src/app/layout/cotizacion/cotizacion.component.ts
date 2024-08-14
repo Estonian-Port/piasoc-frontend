@@ -36,8 +36,8 @@ export class CotizacionComponent implements OnInit {
 
   step : number = 1
   listaStepBox : Array<GenericItem> = [
-    new GenericItem(1, "Tipo de vehiculo"),
-    new GenericItem(2, "Datos del vehiculo"),
+    new GenericItem(1, "Tipo de vehículo"),
+    new GenericItem(2, "Datos del vehículo"),
     new GenericItem(3, "Seguro"),
     new GenericItem(4, "Contacto"),
   ]
@@ -138,7 +138,6 @@ export class CotizacionComponent implements OnInit {
   cleanModelo(){
     this.listaModelo = []
     this.formGroup.get('datosVehiculoDto')?.get('modelo')?.setValue("")
-
   }
 
   async getListaMarcaByTipoVehiculo(){
@@ -211,7 +210,6 @@ export class CotizacionComponent implements OnInit {
       }catch(error){
         console.log(error);
         this.spinnerVisible = false
-
       }
     }
   }
